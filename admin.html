@@ -3,66 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin File Upload - Virtue Production</title>
+    <title>Admin - File Management</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Open Sans', sans-serif;
-            background-color: #f8f9fa;
-        }
-        h1, h2, h3 {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 700;
-            text-transform: uppercase;
-        }
-        .btn-primary {
-            background-color: #FF8200;
-            color: #FFFFFF;
-            transition: all 0.3s ease;
-        }
-        .btn-primary:hover {
-            background-color: #032B44;
-        }
-         .btn-primary:disabled {
-            background-color: #fca5a5;
-            cursor: not-allowed;
-        }
-    </style>
+    <link rel="stylesheet" href="css/style.css">
 </head>
-<body class="bg-gray-100 flex items-center justify-center h-screen">
+<body class="bg-gray-100">
 
-    <div class="w-full max-w-lg p-8 space-y-8 bg-white rounded-xl shadow-lg">
-        <div class="text-center">
-            <h1 class="text-2xl font-bold text-gray-900">Virtue Production</h1>
-            <h2 class="mt-2 text-lg text-gray-600">Secure File Upload</h2>
-        </div>
-        
-        <form id="uploadForm" class="mt-8 space-y-6">
-            <div>
-                <label for="file-upload" class="block text-sm font-medium text-gray-700">Select File</label>
-                <div class="mt-1">
-                    <input id="file-upload" name="file" type="file" required class="block w-full text-sm text-gray-500
-                        file:mr-4 file:py-2 file:px-4
-                        file:rounded-md file:border-0
-                        file:text-sm file:font-semibold
-                        file:bg-[#032B44] file:text-white
-                        hover:file:bg-[#FF8200]
-                    "/>
+    <div class="container mx-auto mt-10 p-8 bg-white rounded-lg shadow-xl max-w-3xl">
+        <header class="mb-8 border-b pb-4">
+            <h1 class="text-3xl font-bold text-[#032B44]">Admin File Management</h1>
+            <p class="text-gray-600">Upload user manuals and other documents. Files will be stored securely.</p>
+        </header>
+
+        <!-- File Upload Section -->
+        <section class="mb-10">
+            <h2 class="text-2xl font-semibold mb-4">Upload New File</h2>
+            <form id="uploadForm" class="bg-gray-50 p-6 rounded-lg border">
+                <div class="mb-4">
+                    <label for="fileInput" class="block text-sm font-medium text-gray-700 mb-2">Select a file to upload:</label>
+                    <input type="file" id="fileInput" name="file" required class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-[#FF8200] file:text-white hover:file:bg-[#d96f00]">
                 </div>
-            </div>
+                <button type="submit" class="px-6 py-2 rounded-md btn-primary uppercase font-bold text-sm w-full md:w-auto">Upload File</button>
+            </form>
+            <div id="uploadStatus" class="mt-4 text-center"></div>
+        </section>
 
-            <div>
-                <button type="submit" class="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-[#032B44] hover:bg-[#FF8200] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#FF8200] btn-primary">
-                    Upload File
-                </button>
+        <!-- Uploaded Files Section -->
+        <section>
+            <h2 class="text-2xl font-semibold mb-4">Uploaded Files</h2>
+            <div id="fileList" class="space-y-3">
+                <p class="text-gray-500">Loading files...</p>
+                <!-- File list will be dynamically inserted here -->
             </div>
-        </form>
+        </section>
 
-        <div id="feedback" class="mt-4 text-center"></div>
     </div>
 
+    <script src="js/admin.js"></script>
 </body>
 </html>
+
