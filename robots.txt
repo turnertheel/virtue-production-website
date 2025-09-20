@@ -1,0 +1,6 @@
+Allow all user agents to crawl the entire site.
+User-agent: *
+Allow: /
+
+Disallow access to the private admin page.
+Disallow: /admin.html
