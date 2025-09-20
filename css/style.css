@@ -1,0 +1,106 @@
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: #FFFFFF;
+            color: #032B44;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .hero-bg {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?q=80&w=2070&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+        }
+        .btn-primary {
+            background-color: #FF8200;
+            color: #FFFFFF;
+            transition: all 0.3s ease;
+        }
+        .btn-primary:hover {
+            background-color: #FFFFFF;
+            color: #FF8200;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(255, 130, 0, 0.4);
+        }
+       .btn-primary:disabled {
+            background-color: #fca5a5; /* A lighter orange/red to indicate disabled */
+            cursor: not-allowed;
+        }
+        .btn-secondary {
+            background-color: transparent;
+            border: 2px solid #FF8200;
+            color: #FF8200;
+            transition: all 0.3s ease;
+        }
+        .btn-secondary:hover {
+            background-color: #FF8200;
+            color: #FFFFFF;
+        }
+        .section-bg {
+            background-color: #f8f9fa;
+        }
+        .card-hover {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        .portfolio-hover {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .portfolio-hover:hover {
+            transform: scale(1.05);
+        }
+        .modal {
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        .modal-content {
+            transition: transform 0.3s ease;
+        }
+        .nav-link {
+            position: relative;
+            transition: color 0.3s;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #FF8200;
+            transition: width 0.3s;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        .nav-link:hover {
+            color: #FF8200;
+        }
+        .error-message {
+            color: #dc2626; /* red-600 */
+            font-size: 0.875rem; /* text-sm */
+            margin-top: 0.25rem; /* mt-1 */
+            display: none; /* hidden by default */
+        }
+        .form-feedback {
+            display: none;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin-top: 1rem;
+            text-align: center;
+        }
+        .form-feedback.success {
+            background-color: #d1fae5; /* green-100 */
+            color: #065f46; /* green-800 */
+        }
+        .form-feedback.error {
+            background-color: #fee2e2; /* red-100 */
+            color: #991b1b; /* red-800 */
+        }
