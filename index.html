@@ -12,10 +12,11 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Open+Sans:wght@400;600&family=Source+Sans+Pro:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     
-    <!-- This line correctly links your new stylesheet -->
-    <link rel="stylesheet" href="css/style.css">
+    <!-- Add the Turnstile script to the head -->
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 
      <script type="application/ld+json">
     {
@@ -212,7 +213,7 @@
                     </div>
                     <!-- Portfolio Item 5 -->
                      <div class="rounded-lg overflow-hidden shadow-lg portfolio-hover">
-                        <img src="https://images.unsplash.com/photo-1514525253161-7a4 ६d19cd819?q=80&w=1974&auto=format&fit=crop" alt="Large crowd at a music festival" class="w-full h-64 object-cover">
+                        <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?q=80&w=1974&auto=format&fit=crop" alt="Large crowd at a music festival" class="w-full h-64 object-cover">
                     </div>
                     <!-- Portfolio Item 6 -->
                     <div class="rounded-lg overflow-hidden shadow-lg portfolio-hover">
@@ -335,6 +336,8 @@
                     <textarea id="rental-message" name="message" rows="4" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-[#FF8200] focus:border-[#FF8200]"></textarea>
                      <p class="error-message" id="rental-message-error">Message is required.</p>
                 </div>
+                <!-- Add the Turnstile widget div here -->
+                <div class="cf-turnstile" data-sitekey="0x4AAAAAAB2T7c-Q7jmWAa8F"></div>
                 <div class="form-feedback" id="rentalsForm-feedback"></div>
                 <!-- Modal Footer -->
                 <div class="flex items-center justify-end p-6 border-t border-gray-200 rounded-b">
@@ -367,6 +370,8 @@
                     <textarea id="wedding-message" name="message" rows="4" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-[#FF8200] focus:border-[#FF8200]"></textarea>
                     <p class="error-message" id="wedding-message-error">Message is required.</p>
                 </div>
+                 <!-- Add the Turnstile widget div here -->
+                <div class="cf-turnstile" data-sitekey="0x4AAAAAAB2T7c-Q7jmWAa8F"></div>
                 <div class="form-feedback" id="weddingsForm-feedback"></div>
                 <!-- Modal Footer -->
                 <div class="flex items-center justify-end p-6 border-t border-gray-200 rounded-b">
@@ -399,6 +404,8 @@
                     <textarea id="contact-message" name="message" rows="4" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-[#FF8200] focus:border-[#FF8200]"></textarea>
                     <p class="error-message" id="contact-message-error">Message is required.</p>
                 </div>
+                 <!-- Add the Turnstile widget div here -->
+                <div class="cf-turnstile" data-sitekey="0x4AAAAAAB2T7c-Q7jmWAa8F"></div>
                 <div class="form-feedback" id="contactForm-feedback"></div>
                  <!-- Modal Footer -->
                 <div class="flex items-center justify-end p-6 border-t border-gray-200 rounded-b">
@@ -409,11 +416,9 @@
             </form>
         </div>
     </div>
-    
-    <!-- This line correctly links your new script file -->
+
     <script src="js/script.js"></script>
 
 </body>
-
 </html>
 

@@ -57,10 +57,18 @@ function closeModal(modalId) {
     modal.querySelector('.modal-content').classList.add('scale-95');
     setTimeout(() => {
         modal.classList.add('invisible');
-         // Also hide any feedback messages when closing
         const feedback = modal.querySelector('.form-feedback');
         if (feedback) {
             feedback.style.display = 'none';
+        }
+        // Reset turnstile widget on close
+        const turnstileWidget = modal.querySelector('.cf-turnstile');
+        if(turnstileWidget && typeof turnstile !== 'undefined') {
+            try {
+                turnstile.reset(turnstileWidget);
+            } catch (e) {
+                console.error("Error resetting Turnstile widget:", e);
+            }
         }
     }, 300);
 }
@@ -112,7 +120,6 @@ function validateForm(formInfo) {
     const emailError = document.getElementById(`${formInfo.emailField}-error`);
     const messageError = document.getElementById(`${formInfo.messageField}-error`);
     
-    // Reset styles
     nameError.style.display = 'none';
     emailError.style.display = 'none';
     messageError.style.display = 'none';
@@ -152,9 +159,19 @@ async function handleFormSubmit(formElement) {
 
     const formData = new FormData(formElement);
     const data = Object.fromEntries(formData.entries());
+    
+    // Get the Turnstile token from the form data
+    const turnstileToken = formData.get('cf-turnstile-response');
+    if (!turnstileToken) {
+        showFeedback(feedbackElement, 'Could not verify you are human. Please refresh and try again.', 'error');
+        submitButton.disabled = false;
+        submitButton.textContent = 'Submit Inquiry';
+        return;
+    }
+    // No need to add it to the data object manually, FormData already includes it.
 
     try {
-        if (workerUrl === 'PASTE_YOUR_WORKER_URL_HERE' || !workerUrl) {
+        if (!workerUrl) {
             throw new Error('Worker URL is not configured.');
         }
 
@@ -169,12 +186,13 @@ async function handleFormSubmit(formElement) {
         const result = await response.json();
 
         if (!response.ok || !result.success) {
+            // Use the detailed error from the worker if available
             throw new Error(result.error || `Server responded with status: ${response.status}`);
         }
         
         showFeedback(feedbackElement, 'Thank you! Your message has been sent.', 'success');
         formElement.reset();
-        setTimeout(() => closeModal(formElement.closest('.modal').id), 3000); // Close modal after 3 seconds
+        setTimeout(() => closeModal(formElement.closest('.modal').id), 3000);
 
     } catch (error) {
         console.error('Submission error:', error);
@@ -192,3 +210,4 @@ function showFeedback(element, message, type) {
         element.style.display = 'block';
     }
 }
+
