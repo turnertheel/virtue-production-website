@@ -4,29 +4,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Virtue Production: Pro Audio, Lighting & Video for Nashville Tours & Events</title>
-    <meta name="description" content="Virtue Production offers professional audio, lighting, and video services for concerts, weddings, and corporate events in Nashville, TN. Specializing in audio rentals, concert lighting, and complete event production.">
-    <meta name="keywords" content="audio rentals nashville, production company nashville, wedding sound nashville, wireless mic rental nashville, concert lighting nashville, wireless in ear nashville, sound man nashville, event production nashville, live sound nashville">
+    <title>Virtue Production: Pro Audio, Lighting & Sound Rentals in Nashville, TN</title>
+    <meta name="description" content="Virtue Production offers professional audio rentals, concert lighting, and wedding sound services in Nashville, TN. Your go-to production company for live events, tours, and corporate functions.">
+    <meta name="keywords" content="audio rentals nashville, production company nashville, wedding sound nashville, wireless mic rental nashville, concert lighting nashville, wireless in ear nashville, sound man nashville, live production nashville, event production nashville">
     
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Open+Sans:wght@400;600&family=Source+Sans+Pro:wght@300;400&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <style>
         body {
             font-family: 'Open Sans', sans-serif;
             background-color: #FFFFFF;
             color: #032B44;
         }
-
         h1, h2, h3, h4, h5, h6 {
             font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.05em;
         }
-
         .hero-bg {
-            background-image: url('https://placehold.co/1920x1080/032B44/FFFFFF?text=Virtue+Production+In+Action');
+            background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?q=80&w=2070&auto=format&fit=crop');
             background-size: cover;
             background-position: center;
         }
@@ -39,65 +39,91 @@
             background-color: #FFFFFF;
             color: #FF8200;
             transform: translateY(-2px);
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 10px rgba(255, 130, 0, 0.4);
         }
         .btn-secondary {
-             background-color: transparent;
-             border: 2px solid #FFFFFF;
-             color: #FFFFFF;
-             transition: all 0.3s ease;
+            background-color: transparent;
+            border: 2px solid #FF8200;
+            color: #FF8200;
+            transition: all 0.3s ease;
         }
         .btn-secondary:hover {
-            background-color: #FFFFFF;
-            color: #032B44;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            background-color: #FF8200;
+            color: #FFFFFF;
         }
-        .modal-backdrop {
-            background-color: rgba(0, 0, 0, 0.7);
-            backdrop-filter: blur(4px);
-        }
-        .section-scroll {
-            scroll-margin-top: 80px; /* Adjust based on header height */
+        .section-bg {
+            background-color: #f8f9fa;
         }
         .card-hover {
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
         .card-hover:hover {
             transform: translateY(-8px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
         }
-        .portfolio-hover img {
-            transition: transform 0.4s ease;
+        .portfolio-hover {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-        .portfolio-hover:hover img {
+        .portfolio-hover:hover {
             transform: scale(1.05);
         }
+        .modal {
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        .modal-content {
+            transition: transform 0.3s ease;
+        }
+        .nav-link {
+            position: relative;
+            transition: color 0.3s;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #FF8200;
+            transition: width 0.3s;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        .nav-link:hover {
+            color: #FF8200;
+        }
+        .error-message {
+            color: #dc2626; /* red-600 */
+            font-size: 0.875rem; /* text-sm */
+            margin-top: 0.25rem; /* mt-1 */
+            display: none; /* hidden by default */
+        }
     </style>
-     <!-- Local Business Schema -->
-    <script type="application/ld+json">
+     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "ProfessionalService",
+      "@type": "LocalBusiness",
       "name": "Virtue Production",
-      "image": "https://placehold.co/500x500/032B44/FFFFFF?text=Virtue+Logo",
+      "image": "",
       "@id": "",
       "url": "https://www.virtueproduction.com",
       "telephone": "555-555-5555",
-      "description": "Virtue Production is a premier live production company in Nashville, TN, offering audio, lighting, and video services. We specialize in audio rentals for tours, concert lighting, wedding sound systems, and wireless mic rentals.",
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "123 Music Row",
         "addressLocality": "Nashville",
         "addressRegion": "TN",
-        "postalCode": "37212",
+        "postalCode": "37203",
         "addressCountry": "US"
       },
       "geo": {
         "@type": "GeoCoordinates",
-        "latitude": 36.1497,
-        "longitude": -86.7997
+        "latitude": 36.1492,
+        "longitude": -86.799
       },
+      "description": "Virtue Production is a premier live production company in Nashville, TN, specializing in audio rentals, concert lighting, and sound services for weddings and corporate events.",
       "openingHoursSpecification": {
         "@type": "OpeningHoursSpecification",
         "dayOfWeek": [
@@ -113,479 +139,503 @@
       "sameAs": [
         "https://www.facebook.com/virtueproduction",
         "https://www.instagram.com/virtueproduction"
-      ] 
+      ],
+      "priceRange": "$$",
+      "serviceArea": {
+        "@type": "Place",
+        "geo": {
+          "@type": "GeoCircle",
+          "geoMidpoint": {
+            "@type": "GeoCoordinates",
+            "latitude": 36.1627,
+            "longitude": -86.7816
+          },
+          "geoRadius": 80467.2
+        },
+        "name": "Nashville and surrounding areas"
+      }
     }
     </script>
 </head>
 
-<body class="antialiased">
-
+<body class="bg-white text-gray-800">
     <!-- Header -->
-    <header id="header" class="bg-white/80 backdrop-blur-md sticky top-0 z-40 shadow-md">
-        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#home" class="flex items-center space-x-3">
-                <!-- SVG Logo -->
+    <header id="header" class="bg-[#032B44] text-white p-4 fixed w-full top-0 z-50 transition-shadow duration-300 shadow-lg">
+        <div class="container mx-auto flex justify-between items-center">
+             <a href="#home" class="flex items-center space-x-3">
                 <svg class="h-10 w-auto" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M50 10L10 30V35L50 15L90 35V30L50 10Z" fill="#032B44"/>
-                    <path d="M15 40V90H25V40H15Z" fill="#032B44"/>
-                    <path d="M30 40V90H40V40H30Z" fill="#032B44"/>
-                    <path d="M45 40V90H55V40H45Z" fill="#032B44"/>
-                    <path d="M60 40V90H70V40H60Z" fill="#032B44"/>
-                    <path d="M75 40V90H85V40H75Z" fill="#032B44"/>
+                    <g clip-path="url(#clip0_101_2)">
+                    <path d="M10 90H90" stroke="white" stroke-width="4"/>
+                    <path d="M50 10L10 30V35H90V30L50 10Z" stroke="white" stroke-width="4"/>
+                    <path d="M20 80V40H28V80H20Z" fill="#FF8200"/>
+                    <path d="M36 80V40H44V80H36Z" fill="#FF8200"/>
+                    <path d="M52 80V40H60V80H52Z" fill="#FF8200"/>
+                    <path d="M68 80V40H76V80H68Z" fill="#FF8200"/>
+                    </g>
+                    <defs>
+                    <clipPath id="clip0_101_2">
+                    <rect width="100" height="100" fill="white"/>
+                    </clipPath>
+                    </defs>
                 </svg>
-                <div class="text-xl font-bold tracking-wider text-[#032B44]">
-                    <div>VIRTUE</div>
-                    <div class="text-sm font-normal tracking-widest">PRODUCTION</div>
-                </div>
+                <span class="text-xl font-bold tracking-wider" style="font-family: 'Montserrat', sans-serif;">VIRTUE PRODUCTION</span>
             </a>
-            <div class="hidden md:flex items-center space-x-8">
-                <a href="#services" class="text-[#032B44] hover:text-[#FF8200] transition duration-300">Services</a>
-                <a href="#work" class="text-[#032B44] hover:text-[#FF8200] transition duration-300">Our Work</a>
-                <a href="#about" class="text-[#032B44] hover:text-[#FF8200] transition duration-300">About</a>
-                <a href="#faq" class="text-[#032B44] hover:text-[#FF8200] transition duration-300">FAQ</a>
-                <button onclick="openModal('contactModal')" class="btn-primary rounded-lg px-5 py-2 text-sm font-semibold uppercase">Contact Us</button>
-            </div>
+            <nav class="hidden md:flex items-center space-x-6">
+                <a href="#home" class="nav-link">Home</a>
+                <a href="#services" class="nav-link">Services</a>
+                <a href="#work" class="nav-link">Our Work</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#faq" class="nav-link">FAQ</a>
+                 <button onclick="openModal('contactModal')" class="ml-4 px-4 py-2 rounded-md btn-primary uppercase font-bold text-sm">Contact Us</button>
+            </nav>
             <div class="md:hidden flex items-center">
-                 <button onclick="openModal('contactModal')" class="text-[#FF8200] font-bold text-sm uppercase mr-4">Contact Us</button>
-                <button id="mobile-menu-button" class="text-[#032B44]">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-4 6h4"></path></svg>
+                 <button onclick="openModal('contactModal')" class="px-3 py-2 rounded-md btn-primary uppercase font-bold text-xs mr-2">Contact Us</button>
+                <button id="mobile-menu-button" class="text-white focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
                 </button>
             </div>
         </div>
         <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg">
-            <a href="#services" class="block py-2 px-6 text-[#032B44] hover:bg-gray-100">Services</a>
-            <a href="#work" class="block py-2 px-6 text-[#032B44] hover:bg-gray-100">Our Work</a>
-            <a href="#about" class="block py-2 px-6 text-[#032B44] hover:bg-gray-100">About</a>
-            <a href="#faq" class="block py-2 px-6 text-[#032B44] hover:bg-gray-100">FAQ</a>
+        <div id="mobile-menu" class="hidden md:hidden bg-[#032B44] absolute top-full left-0 w-full">
+            <a href="#home" class="block text-center py-3 px-4 text-sm hover:bg-[#1E438A]">Home</a>
+            <a href="#services" class="block text-center py-3 px-4 text-sm hover:bg-[#1E438A]">Services</a>
+            <a href="#work" class="block text-center py-3 px-4 text-sm hover:bg-[#1E438A]">Our Work</a>
+            <a href="#about" class="block text-center py-3 px-4 text-sm hover:bg-[#1E438A]">About</a>
+            <a href="#faq" class="block text-center py-3 px-4 text-sm hover:bg-[#1E438A]">FAQ</a>
         </div>
     </header>
 
     <!-- Main Content -->
     <main>
         <!-- Hero Section -->
-        <section id="home" class="hero-bg text-white section-scroll">
-            <div class="bg-black bg-opacity-60 min-h-screen flex flex-col justify-center items-center text-center px-6">
-                <h1 class="text-4xl md:text-6xl font-bold leading-tight mb-4">Live Production for Nashville's Tours & Events</h1>
-                <p class="text-lg md:text-xl max-w-3xl mb-8">We provide professional audio, lighting, and video support to the music industry and special events. Your reliable partner for wedding sound, concert lighting, and audio rentals in Nashville.</p>
-                <div class="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-6">
-                    <a href="#services-music" class="btn-primary rounded-lg px-8 py-4 text-lg font-semibold uppercase">Music & Entertainment</a>
-                    <a href="#services-events" class="btn-secondary rounded-lg px-8 py-4 text-lg font-semibold uppercase">Weddings & Corporate</a>
+        <section id="home" class="hero-bg h-screen flex items-center justify-center text-white text-center pt-16">
+            <div class="container mx-auto px-4">
+                <h1 class="text-4xl md:text-6xl font-bold mb-4">Virtue Production: Live Production for Nashville's Tours & Events</h1>
+                <p class="text-lg md:text-2xl mb-8 max-w-3xl mx-auto" style="font-family: 'Source Sans Pro Light', sans-serif;">We provide audio, lighting, and video support to the music industry and special events. Specializing in audio rentals, wedding sound, and concert lighting in Nashville.</p>
+                <div class="space-y-4 md:space-y-0 md:space-x-4">
+                    <a href="#services" class="inline-block px-8 py-3 rounded-md btn-primary text-lg uppercase font-bold">Explore Services</a>
                 </div>
             </div>
         </section>
 
-        <!-- Services -->
-        <section id="services" class="py-20 bg-gray-50 section-scroll">
-            <div class="container mx-auto px-6 text-center">
-                <h2 class="text-3xl font-bold text-[#032B44] mb-12">Our Services</h2>
-                
-                <!-- Music Industry Section -->
-                <div id="services-music" class="mb-16">
-                    <h3 class="text-2xl font-semibold text-[#032B44] mb-8">For the Music & Entertainment Industry</h3>
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                        <!-- Rental Package 1 -->
-                        <div class="bg-white p-8 rounded-xl shadow-lg card-hover">
-                            <h4 class="text-xl font-bold mb-4">Club Package</h4>
-                            <p class="text-gray-600 mb-6">Ideal for small venues and bars. Includes a pair of high-quality speakers, a mixer, and essential microphones.</p>
-                            <button onclick="openModal('rentalsModal')" class="btn-primary rounded-lg px-6 py-2 text-sm font-semibold uppercase">Inquire</button>
-                        </div>
-                        <!-- Rental Package 2 -->
-                        <div class="bg-white p-8 rounded-xl shadow-lg card-hover">
-                            <h4 class="text-xl font-bold mb-4">Venue Pro</h4>
-                            <p class="text-gray-600 mb-6">Our most popular package for mid-sized venues. Upgraded sound system and basic lighting rig.</p>
-                             <button onclick="openModal('rentalsModal')" class="btn-primary rounded-lg px-6 py-2 text-sm font-semibold uppercase">Inquire</button>
-                        </div>
-                        <!-- Rental Package 3 -->
-                        <div class="bg-white p-8 rounded-xl shadow-lg card-hover">
-                            <h4 class="text-xl font-bold mb-4">Festival Stage</h4>
-                            <p class="text-gray-600 mb-6">Complete audio solution for outdoor events and festivals. Includes line array speakers and full monitoring.</p>
-                             <button onclick="openModal('rentalsModal')" class="btn-primary rounded-lg px-6 py-2 text-sm font-semibold uppercase">Inquire</button>
-                        </div>
-                        <!-- Rental Package 4 -->
-                        <div class="bg-white p-8 rounded-xl shadow-lg card-hover">
-                            <h4 class="text-xl font-bold mb-4">Touring Rig</h4>
-                            <p class="text-gray-600 mb-6">A comprehensive audio and lighting package designed for the road. Custom built to your tour's specifications.</p>
-                            <button onclick="openModal('rentalsModal')" class="btn-primary rounded-lg px-6 py-2 text-sm font-semibold uppercase">Inquire</button>
-                        </div>
+        <!-- Services Section -->
+        <section id="services" class="py-20">
+            <div class="container mx-auto px-4 text-center">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Our Services</h2>
+                <p class="text-lg text-gray-600 mb-12 max-w-2xl mx-auto">From intimate weddings to large-scale concerts, we provide tailored production solutions.</p>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <!-- Music & Entertainment -->
+                    <div class="bg-white p-8 rounded-lg shadow-xl text-left card-hover">
+                        <h3 class="text-2xl font-bold mb-4">Music & Entertainment</h3>
+                        <p class="mb-6">We offer pre-packaged audio rental options for the music and entertainment industry in Nashville. Perfect for tours, festivals, and live shows. Our inventory includes wireless mic rentals, in-ear monitor systems, and full sound setups handled by an expert sound man.</p>
+                        <button onclick="openModal('rentalsModal')" class="px-6 py-2 rounded-md btn-secondary uppercase font-bold text-sm">View Rental Packages</button>
                     </div>
-                </div>
-
-                <!-- Weddings & Corporate Section -->
-                <div id="services-events">
-                    <h3 class="text-2xl font-semibold text-[#032B44] mb-8">For Weddings & Corporate Events</h3>
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-                        <!-- Event Tier 1 -->
-                        <div class="bg-white p-8 rounded-xl shadow-lg card-hover">
-                            <h4 class="text-xl font-bold mb-4">Essential Sound</h4>
-                            <p class="text-gray-600 mb-6">Perfect for ceremonies and speeches. Includes a discrete speaker system and wireless microphones for clear audio.</p>
-                            <button onclick="openModal('eventsModal')" class="btn-primary rounded-lg px-6 py-2 text-sm font-semibold uppercase">Inquire</button>
-                        </div>
-                        <!-- Event Tier 2 -->
-                        <div class="bg-white p-8 rounded-xl shadow-lg card-hover">
-                            <h4 class="text-xl font-bold mb-4">Ambiance Package</h4>
-                            <p class="text-gray-600 mb-6">Adds elegant uplighting and a premium sound system for dinner music and reception announcements.</p>
-                            <button onclick="openModal('eventsModal')" class="btn-primary rounded-lg px-6 py-2 text-sm font-semibold uppercase">Inquire</button>
-                        </div>
-                        <!-- Event Tier 3 -->
-                        <div class="bg-white p-8 rounded-xl shadow-lg card-hover">
-                            <h4 class="text-xl font-bold mb-4">Full Production</h4>
-                            <p class="text-gray-600 mb-6">Our all-inclusive package. Features band/DJ support, custom lighting design, and video projection.</p>
-                            <button onclick="openModal('eventsModal')" class="btn-primary rounded-lg px-6 py-2 text-sm font-semibold uppercase">Inquire</button>
-                        </div>
+                    <!-- Weddings & Corporate -->
+                    <div class="bg-white p-8 rounded-lg shadow-xl text-left card-hover">
+                        <h3 class="text-2xl font-bold mb-4">Weddings & Corporate Events</h3>
+                        <p class="mb-6">Our three-tiered service packages for weddings and corporate events ensure your special day has crystal-clear sound and elegant lighting. We specialize in wedding sound systems and professional audio for corporate presentations in the Nashville area.</p>
+                        <button onclick="openModal('weddingsModal')" class="px-6 py-2 rounded-md btn-secondary uppercase font-bold text-sm">View Event Tiers</button>
                     </div>
                 </div>
             </div>
         </section>
-
+        
         <!-- Production Services Section -->
-        <section id="production-services" class="py-20 bg-white section-scroll">
-            <div class="container mx-auto px-6">
-                <div class="text-center">
-                    <h2 class="text-3xl font-bold text-[#032B44] mb-4">Expert Production Services in Nashville</h2>
-                    <p class="text-lg text-gray-700 max-w-3xl mx-auto mb-12">From crystal-clear wireless mic rentals to immersive concert lighting, we have the gear and expertise to make your event a success.</p>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-                    <div class="p-6">
-                        <h3 class="text-2xl font-semibold text-[#032B44] mb-3">Wedding Sound Nashville</h3>
-                        <p class="text-gray-600">Ensure every vow and toast is heard perfectly. We provide elegant and reliable sound systems tailored for Nashville weddings, from intimate ceremonies to grand receptions.</p>
+        <section id="production-services" class="py-20 section-bg">
+            <div class="container mx-auto px-4 text-center">
+                <h2 class="text-3xl md:text-4xl font-bold mb-12">Specialized Production Services</h2>
+                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 text-left">
+                    <div class="p-6 bg-white rounded-lg shadow-lg">
+                        <h3 class="text-xl font-bold mb-2">Wireless Mic Rental Nashville</h3>
+                        <p>High-quality, reliable wireless microphone systems for performers, speakers, and events of all sizes.</p>
                     </div>
-                    <div class="p-6">
-                        <h3 class="text-2xl font-semibold text-[#032B44] mb-3">Concert Lighting & Audio</h3>
-                        <p class="text-gray-600">As a leading production company in Nashville, we create unforgettable concert experiences. We offer dynamic lighting rigs, powerful sound systems, and experienced "sound man" services.</p>
+                     <div class="p-6 bg-white rounded-lg shadow-lg">
+                        <h3 class="text-xl font-bold mb-2">Concert Lighting Nashville</h3>
+                        <p>Dynamic and professional lighting rigs to create an unforgettable visual experience for any performance.</p>
                     </div>
-                    <div class="p-6">
-                        <h3 class="text-2xl font-semibold text-[#032B44] mb-3">Wireless Rentals</h3>
-                        <p class="text-gray-600">Get the best wireless mic and in-ear monitor rentals in Nashville. Our inventory features industry-standard equipment for flawless performance on any stage.</p>
+                     <div class="p-6 bg-white rounded-lg shadow-lg">
+                        <h3 class="text-xl font-bold mb-2">Wedding Sound Nashville</h3>
+                        <p>Discreet, high-fidelity sound systems to ensure every word and note is heard perfectly on your special day.</p>
+                    </div>
+                     <div class="p-6 bg-white rounded-lg shadow-lg">
+                        <h3 class="text-xl font-bold mb-2">Wireless In-Ear Systems</h3>
+                        <p>Professional-grade wireless in-ear monitor (IEM) systems for musicians and performers in Nashville.</p>
+                    </div>
+                     <div class="p-6 bg-white rounded-lg shadow-lg">
+                        <h3 class="text-xl font-bold mb-2">Sound Man Nashville</h3>
+                        <p>Hire an experienced and professional 'sound man' (audio engineer) for your Nashville event or tour.</p>
+                    </div>
+                    <div class="p-6 bg-white rounded-lg shadow-lg">
+                        <h3 class="text-xl font-bold mb-2">Full Audio Packages</h3>
+                        <p>Complete audio solutions including speakers, mixers, and microphones for any live event production.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Our Work -->
-        <section id="work" class="py-20 bg-gray-50 section-scroll">
-            <div class="container mx-auto px-6">
-                <div class="text-center">
-                    <h2 class="text-3xl font-bold text-[#032B44] mb-12">Our Work</h2>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Our Work Section -->
+        <section id="work" class="py-20">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Our Work</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
                     <!-- Portfolio Item 1 -->
-                    <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover">
-                        <div class="overflow-hidden portfolio-hover">
-                           <img src="https://placehold.co/600x400/FF8200/FFFFFF?text=Concert" alt="Dynamic concert lighting for a Nashville band" class="w-full h-56 object-cover">
-                        </div>
-                        <div class="p-6">
-                            <h3 class="text-xl font-bold mb-2">Music Festival</h3>
-                            <p class="text-gray-600">Full stage production for a local Nashville music festival, showcasing our robust concert lighting and audio capabilities.</p>
-                        </div>
+                    <div class="rounded-lg overflow-hidden shadow-lg portfolio-hover">
+                        <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd51725?q=80&w=2070&auto=format&fit=crop" alt="Concert production with vibrant stage lighting" class="w-full h-64 object-cover">
                     </div>
                     <!-- Portfolio Item 2 -->
-                    <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover">
-                        <div class="overflow-hidden portfolio-hover">
-                           <img src="https://placehold.co/600x400/032B44/FFFFFF?text=Wedding" alt="Elegant wedding sound and lighting setup in Nashville" class="w-full h-56 object-cover">
-                        </div>
-                        <div class="p-6">
-                            <h3 class="text-xl font-bold mb-2">Luxury Wedding</h3>
-                            <p class="text-gray-600">Provided discrete audio reinforcement and ambient lighting, ensuring a magical atmosphere for a Nashville wedding.</p>
-                        </div>
+                    <div class="rounded-lg overflow-hidden shadow-lg portfolio-hover">
+                         <img src="https://images.unsplash.com/photo-1558008258-3256797b43f3?q=80&w=2070&auto=format&fit=crop" alt="Outdoor wedding ceremony with audio setup" class="w-full h-64 object-cover">
                     </div>
                     <!-- Portfolio Item 3 -->
-                    <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover">
-                        <div class="overflow-hidden portfolio-hover">
-                           <img src="https://placehold.co/600x400/1E438A/FFFFFF?text=Corporate+Event" alt="Professional audio visual setup for a corporate event" class="w-full h-56 object-cover">
-                        </div>
-                        <div class="p-6">
-                            <h3 class="text-xl font-bold mb-2">Corporate Gala</h3>
-                            <p class="text-gray-600">Managed all AV needs, including presentations, wireless mics, and stage lighting for a major corporate event.</p>
-                        </div>
+                    <div class="rounded-lg overflow-hidden shadow-lg portfolio-hover">
+                        <img src="https://images.unsplash.com/photo-1505236858219-8359eb29e329?q=80&w=1952&auto=format&fit=crop" alt="Corporate event with stage and screens" class="w-full h-64 object-cover">
                     </div>
-                    <!-- Portfolio Item 4 -->
-                    <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover">
-                        <div class="overflow-hidden portfolio-hover">
-                           <img src="https://placehold.co/600x400/C4C4C4/032B44?text=Artist+Showcase" alt="Nashville artist performing with Virtue Production wireless mic rental" class="w-full h-56 object-cover">
-                        </div>
-                        <div class="p-6">
-                            <h3 class="text-xl font-bold mb-2">Artist Showcase</h3>
-                            <p class="text-gray-600">Supplied a comprehensive audio rental package, including wireless in-ear monitors, for a rising Nashville artist.</p>
-                        </div>
+                     <!-- Portfolio Item 4 -->
+                    <div class="rounded-lg overflow-hidden shadow-lg portfolio-hover">
+                        <img src="https://images.unsplash.com/photo-1543699563-71a2e79a8c12?q=80&w=2070&auto=format&fit=crop" alt="Band performing on stage with professional lighting" class="w-full h-64 object-cover">
                     </div>
-                     <!-- Community Engagement -->
-                    <div class="md:col-span-2 lg:col-span-1 bg-white rounded-xl shadow-lg overflow-hidden card-hover flex flex-col justify-center items-center text-center p-6">
-                        <img src="https://placehold.co/150x150/032B44/FFFFFF?text=Artist" alt="Headshot of a local Nashville artist" class="w-24 h-24 rounded-full mb-4 border-4 border-[#FF8200]">
-                        <h3 class="text-xl font-bold mb-2">Community Spotlight</h3>
-                        <p class="text-gray-600 italic">"Virtue Production's gear and crew are top-notch. They're the best production company in Nashville to work with."</p>
-                        <p class="text-gray-800 font-semibold mt-2">- A Local Artist</p>
+                    <!-- Portfolio Item 5 -->
+                     <div class="rounded-lg overflow-hidden shadow-lg portfolio-hover">
+                        <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?q=80&w=1974&auto=format&fit=crop" alt="Large crowd at a music festival" class="w-full h-64 object-cover">
                     </div>
                     <!-- Portfolio Item 6 -->
-                    <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover">
-                        <div class="overflow-hidden portfolio-hover">
-                           <img src="https://placehold.co/600x400/032B44/FFFFFF?text=Tour+Prep" alt="Sound man prepping audio rental gear for a tour" class="w-full h-56 object-cover">
+                    <div class="rounded-lg overflow-hidden shadow-lg portfolio-hover">
+                         <img src="https://images.unsplash.com/photo-1527529482837-4698179dc6ce?q=80&w=2070&auto=format&fit=crop" alt="Elegant corporate dinner event" class="w-full h-64 object-cover">
+                    </div>
+                </div>
+                 <!-- Community Engagement Section -->
+                <div class="mt-20 text-center">
+                    <h3 class="text-2xl md:text-3xl font-bold mb-10">Community & Collaborations</h3>
+                    <div class="grid md:grid-cols-3 gap-10">
+                        <div class="text-center">
+                            <img src="https://placehold.co/150x150/FF8200/FFFFFF?text=Artist" alt="Local Nashville Artist 1" class="w-36 h-36 rounded-full mx-auto mb-4 shadow-lg">
+                            <h4 class="text-xl font-bold">Artist Name 1</h4>
+                            <p class="text-gray-600 italic mt-2">"Virtue Production brought our sound to life. Truly professional."</p>
                         </div>
-                        <div class="p-6">
-                            <h3 class="text-xl font-bold mb-2">Tour Rehearsal</h3>
-                            <p class="text-gray-600">Provided full backline and monitoring system for a major artist's tour rehearsals right here in Nashville.</p>
+                        <div class="text-center">
+                            <img src="https://placehold.co/150x150/032B44/FFFFFF?text=Band" alt="Local Nashville Band" class="w-36 h-36 rounded-full mx-auto mb-4 shadow-lg">
+                            <h4 class="text-xl font-bold">Local Band Name</h4>
+                            <p class="text-gray-600 italic mt-2">"The best audio rental experience in Nashville, hands down."</p>
+                        </div>
+                        <div class="text-center">
+                            <img src="https://placehold.co/150x150/FF8200/FFFFFF?text=Artist" alt="Local Nashville Artist 2" class="w-36 h-36 rounded-full mx-auto mb-4 shadow-lg">
+                            <h4 class="text-xl font-bold">Artist Name 2</h4>
+                            <p class="text-gray-600 italic mt-2">"Flawless execution for our tour's lighting and sound."</p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- About Us -->
-        <section id="about" class="py-20 bg-white section-scroll">
-            <div class="container mx-auto px-6">
-                <div class="text-center max-w-3xl mx-auto">
-                    <h2 class="text-3xl font-bold text-[#032B44] mb-4">About Virtue Production</h2>
-                    <p class="text-lg text-gray-700 leading-relaxed">
-                        Based in the heart of Music City, Virtue Production was founded on the principle of building lasting relationships through technical excellence and a personable approach. We're more than just a production company in Nashville; we are partners in creating unforgettable live experiences. Whether it's a national tour needing reliable audio rentals or a local wedding requiring pristine sound, our philosophy is the same: deliver flawless execution with unwavering integrity. We pride ourselves on being the go-to team for artists, planners, and venues across Nashville, TN.
-                    </p>
+        <!-- About Us Section -->
+        <section id="about" class="py-20 section-bg">
+            <div class="container mx-auto px-4">
+                <div class="grid md:grid-cols-2 gap-10 items-center">
+                    <div>
+                        <h2 class="text-3xl md:text-4xl font-bold mb-4">About Virtue Production</h2>
+                        <p class="mb-4">Based in the heart of Music City, Virtue Production was founded on the philosophy that great relationships create the best live experiences. We're more than just a production company in Nashville; we are partners in your vision. We bring a personable and dedicated approach to every project, ensuring your event's sound and lighting are nothing short of perfect.</p>
+                        <p>Our commitment is to the local Nashville music and event scene. We believe in building lasting relationships, providing reliable audio rentals, and delivering production quality that honors the talent on stage and the importance of your special day.</p>
+                    </div>
+                    <div>
+                        <img src="https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?q=80&w=2070&auto=format&fit=crop" alt="Virtue Production team working at an event" class="rounded-lg shadow-xl w-full">
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- FAQ -->
-        <section id="faq" class="py-20 bg-gray-50 section-scroll">
-            <div class="container mx-auto px-6 max-w-3xl">
-                <div class="text-center">
-                    <h2 class="text-3xl font-bold text-[#032B44] mb-12">Frequently Asked Questions</h2>
-                </div>
+        <!-- FAQ Section -->
+        <section id="faq" class="py-20">
+            <div class="container mx-auto px-4 max-w-3xl">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Frequently Asked Questions</h2>
                 <div class="space-y-4" id="faq-accordion">
                     <!-- FAQ Item 1 -->
-                    <div>
-                        <button class="w-full text-left font-semibold text-lg p-4 bg-white rounded-lg shadow-md flex justify-between items-center">
-                            <span>What kind of audio equipment do you rent?</span>
-                            <svg class="w-5 h-5 transition-transform transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    <div class="border rounded-lg">
+                        <button class="w-full text-left p-4 font-semibold text-lg flex justify-between items-center focus:outline-none">
+                            What types of events do you service?
+                            <svg class="w-5 h-5 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                         </button>
-                        <div class="overflow-hidden max-h-0 transition-all duration-500 ease-in-out">
-                            <p class="p-4 bg-white mt-1 rounded-lg text-gray-700">We offer a wide range of audio rentals in Nashville, from single wireless mic rentals to complete PA systems for festivals. Our inventory includes digital consoles, line array speakers, wireless in-ear monitors (IEMs), and a variety of microphones from industry-leading brands.</p>
+                        <div class="p-4 bg-gray-50 hidden">
+                            <p>We service a wide range of events including live music concerts, tours, weddings, corporate functions, private parties, and festivals. If you need professional audio or lighting in the Nashville area, we can help.</p>
                         </div>
                     </div>
                     <!-- FAQ Item 2 -->
-                    <div>
-                        <button class="w-full text-left font-semibold text-lg p-4 bg-white rounded-lg shadow-md flex justify-between items-center">
-                            <span>Do you provide services outside of Nashville?</span>
-                            <svg class="w-5 h-5 transition-transform transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    <div class="border rounded-lg">
+                        <button class="w-full text-left p-4 font-semibold text-lg flex justify-between items-center focus:outline-none">
+                            Do you offer delivery and setup for audio rentals?
+                            <svg class="w-5 h-5 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                         </button>
-                         <div class="overflow-hidden max-h-0 transition-all duration-500 ease-in-out">
-                            <p class="p-4 bg-white mt-1 rounded-lg text-gray-700">While we are a Nashville-based production company, we frequently support tours and events across the country. Our touring packages are designed for the road. For local events like weddings and corporate functions, our primary service area is Middle Tennessee.</p>
+                        <div class="p-4 bg-gray-50 hidden">
+                            <p>Yes, all our rental packages include delivery, setup, and teardown by a professional technician to ensure everything runs smoothly. We also offer options to hire a dedicated 'sound man' or audio engineer for the duration of your event.</p>
                         </div>
                     </div>
                     <!-- FAQ Item 3 -->
-                    <div>
-                        <button class="w-full text-left font-semibold text-lg p-4 bg-white rounded-lg shadow-md flex justify-between items-center">
-                            <span>How does the booking process work?</span>
-                             <svg class="w-5 h-5 transition-transform transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    <div class="border rounded-lg">
+                        <button class="w-full text-left p-4 font-semibold text-lg flex justify-between items-center focus:outline-none">
+                            How do I book your services?
+                            <svg class="w-5 h-5 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                         </button>
-                         <div class="overflow-hidden max-h-0 transition-all duration-500 ease-in-out">
-                            <p class="p-4 bg-white mt-1 rounded-lg text-gray-700">The first step is to fill out one of our inquiry forms or give us a call. We'll discuss your needs and provide a detailed quote. Once you approve the quote, we'll send over a contract and an invoice for the deposit to secure your date. You can also book a consultation directly via our Calendly link in the forms.</p>
-                        </div>
-                    </div>
-                     <!-- FAQ Item 4 -->
-                    <div>
-                        <button class="w-full text-left font-semibold text-lg p-4 bg-white rounded-lg shadow-md flex justify-between items-center">
-                            <span>Can I hire just a 'sound man' for my event?</span>
-                             <svg class="w-5 h-5 transition-transform transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                        </button>
-                         <div class="overflow-hidden max-h-0 transition-all duration-500 ease-in-out">
-                            <p class="p-4 bg-white mt-1 rounded-lg text-gray-700">Absolutely. We have a team of experienced and professional audio engineers (sound man) available for hire in Nashville. Whether you have your own gear or are renting from us, our engineers can ensure your show or event sounds its best.</p>
+                        <div class="p-4 bg-gray-50 hidden">
+                            <p>The best way to start is by filling out one of our inquiry forms (Rentals, Weddings & Corporate, or general Contact). From there, you can schedule a free consultation via our Calendly link to discuss your specific needs.</p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
+
     </main>
 
     <!-- Footer -->
-    <footer class="bg-[#032B44] text-white py-12">
-        <div class="container mx-auto px-6 text-center">
-            <p class="mb-4">Virtue Production | Nashville, Tennessee</p>
-            <p class="mb-6">Your partners in live production.</p>
-            <div class="flex justify-center space-x-6">
-                <a href="#" class="hover:text-[#FF8200] transition duration-300">
-                    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd" /></svg>
-                </a>
-                <a href="#" class="hover:text-[#FF8200] transition duration-300">
-                    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.024.06 1.378.06 3.808s-.012 2.784-.06 3.808c-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.024.048-1.378.06-3.808.06s-2.784-.012-3.808-.06c-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.048-1.024-.06-1.378-.06-3.808s.012-2.784.06-3.808c.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 016.08 2.465c.636-.247 1.363-.416 2.427-.465C9.53 2.013 9.884 2 12.315 2zm0 1.623c-2.403 0-2.728.01-3.688.056-1.01.046-1.634.208-2.126.41-1.1.463-1.897 1.26-2.36 2.36-.202.492-.364 1.116-.41 2.126-.046.96-.056 1.285-.056 3.688s.01 2.728.056 3.688c.046 1.01.208 1.634.41 2.126.463 1.1 1.26 1.897 2.36 2.36.492.202 1.116.364 2.126.41.96.046 1.285.056 3.688.056s2.728-.01 3.688-.056c1.01-.046 1.634-.208 2.126-.41 1.1-.463 1.897-1.26 2.36-2.36.202-.492.364-1.116.41-2.126.046-.96.056-1.285.056-3.688s-.01-2.728-.056-3.688c-.046-1.01-.208-1.634-.41-2.126-.463-1.1-1.26-1.897-2.36-2.36-.492-.202-1.116-.364-2.126-.41-.96-.046-1.285-.056-3.688-.056zM12 8.118c2.193 0 3.972 1.779 3.972 3.972s-1.779 3.972-3.972 3.972-3.972-1.779-3.972-3.972 1.779-3.972 3.972-3.972zm0 6.345a2.373 2.373 0 110-4.746 2.373 2.373 0 010 4.746zm5.823-7.232a1.426 1.426 0 11-2.852 0 1.426 1.426 0 012.852 0z" clip-rule="evenodd" /></svg>
-                </a>
+    <footer class="bg-[#032B44] text-white py-10">
+        <div class="container mx-auto px-4 text-center">
+            <p>&copy; 2024 Virtue Production. All Rights Reserved.</p>
+            <p>Nashville, Tennessee</p>
+            <div class="flex justify-center space-x-4 mt-4">
+                <a href="#" class="hover:text-[#FF8200] transition-colors"><i class="fab fa-instagram fa-2x"></i></a>
+                <a href="#" class="hover:text-[#FF8200] transition-colors"><i class="fab fa-facebook-f fa-2x"></i></a>
             </div>
         </div>
     </footer>
 
     <!-- Modals -->
     <!-- Rentals Modal -->
-    <div id="rentalsModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 modal-backdrop">
-        <div class="bg-white rounded-lg shadow-2xl w-full max-w-md p-8 relative">
-            <button onclick="closeModal('rentalsModal')" class="absolute top-4 right-4 text-gray-400 hover:text-gray-800">&times;</button>
-            <h3 class="text-2xl font-bold text-center mb-6">Rental Inquiry</h3>
-            <form id="rentalsForm">
-                <input type="text" placeholder="Full Name" class="w-full p-3 mb-4 border rounded-lg" required>
-                <input type="email" placeholder="Email Address" class="w-full p-3 mb-4 border rounded-lg" required>
-                <input type="tel" placeholder="Phone Number" class="w-full p-3 mb-4 border rounded-lg">
-                <input type="date" placeholder="Event Date" class="w-full p-3 mb-4 border rounded-lg" required>
-                <textarea placeholder="Tell us about your rental needs..." class="w-full p-3 mb-4 border rounded-lg h-24" required></textarea>
-                <p class="text-center text-sm text-gray-600 mb-4">Need to chat? <a href="#" class="text-[#FF8200] font-semibold">Book a consultation.</a></p>
-                <button type="submit" class="w-full btn-primary rounded-lg p-4 font-semibold uppercase">Send Inquiry</button>
+    <div id="rentalsModal" class="modal fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center p-4 z-50 opacity-0 invisible">
+        <div class="modal-content bg-white rounded-lg p-8 max-w-md w-full relative transform scale-95">
+            <button onclick="closeModal('rentalsModal')" class="absolute top-4 right-4 text-gray-600 hover:text-gray-900">&times;</button>
+            <h3 class="text-2xl font-bold mb-6 text-center">Audio Rental Inquiries</h3>
+            <form id="rentalsForm" class="space-y-4">
+                <input type="hidden" name="form_type" value="Rentals">
+                <div>
+                    <label for="rental-name" class="block text-sm font-medium text-gray-700">Name</label>
+                    <input type="text" id="rental-name" name="name" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-[#FF8200] focus:border-[#FF8200]">
+                    <p class="error-message" id="rental-name-error">Name is required.</p>
+                </div>
+                <div>
+                    <label for="rental-email" class="block text-sm font-medium text-gray-700">Email</label>
+                    <input type="email" id="rental-email" name="email" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-[#FF8200] focus:border-[#FF8200]">
+                     <p class="error-message" id="rental-email-error">Please enter a valid email.</p>
+                </div>
+                <div>
+                    <label for="rental-message" class="block text-sm font-medium text-gray-700">Tell us about your rental needs</label>
+                    <textarea id="rental-message" name="message" rows="4" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-[#FF8200] focus:border-[#FF8200]"></textarea>
+                     <p class="error-message" id="rental-message-error">Message is required.</p>
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="w-full px-6 py-3 rounded-md btn-primary uppercase font-bold text-sm">Submit Inquiry</button>
+                    <p class="text-sm text-gray-600 mt-4">or</p>
+                    <a href="#" class="inline-block mt-2 font-semibold text-[#FF8200] hover:underline">Book a Free Consultation</a>
+                </div>
             </form>
         </div>
     </div>
-
-    <!-- Events Modal -->
-    <div id="eventsModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 modal-backdrop">
-        <div class="bg-white rounded-lg shadow-2xl w-full max-w-md p-8 relative">
-            <button onclick="closeModal('eventsModal')" class="absolute top-4 right-4 text-gray-400 hover:text-gray-800">&times;</button>
-            <h3 class="text-2xl font-bold text-center mb-6">Wedding & Corporate Inquiry</h3>
-            <form id="eventsForm">
-                <input type="text" placeholder="Full Name" class="w-full p-3 mb-4 border rounded-lg" required>
-                <input type="email" placeholder="Email Address" class="w-full p-3 mb-4 border rounded-lg" required>
-                <input type="tel" placeholder="Phone Number" class="w-full p-3 mb-4 border rounded-lg">
-                <input type="text" placeholder="Venue Name / Location" class="w-full p-3 mb-4 border rounded-lg">
-                <input type="date" placeholder="Event Date" class="w-full p-3 mb-4 border rounded-lg" required>
-                <textarea placeholder="Tell us about your event..." class="w-full p-3 mb-4 border rounded-lg h-24" required></textarea>
-                <p class="text-center text-sm text-gray-600 mb-4">Need to chat? <a href="#" class="text-[#FF8200] font-semibold">Book a consultation.</a></p>
-                <button type="submit" class="w-full btn-primary rounded-lg p-4 font-semibold uppercase">Send Inquiry</button>
+    <!-- Weddings Modal -->
+    <div id="weddingsModal" class="modal fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center p-4 z-50 opacity-0 invisible">
+        <div class="modal-content bg-white rounded-lg p-8 max-w-md w-full relative transform scale-95">
+            <button onclick="closeModal('weddingsModal')" class="absolute top-4 right-4 text-gray-600 hover:text-gray-900">&times;</button>
+            <h3 class="text-2xl font-bold mb-6 text-center">Wedding & Corporate Inquiries</h3>
+            <form id="weddingsForm" class="space-y-4">
+                 <input type="hidden" name="form_type" value="Weddings/Corporate">
+                <div>
+                    <label for="wedding-name" class="block text-sm font-medium text-gray-700">Name</label>
+                    <input type="text" id="wedding-name" name="name" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-[#FF8200] focus:border-[#FF8200]">
+                    <p class="error-message" id="wedding-name-error">Name is required.</p>
+                </div>
+                <div>
+                    <label for="wedding-email" class="block text-sm font-medium text-gray-700">Email</label>
+                    <input type="email" id="wedding-email" name="email" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-[#FF8200] focus:border-[#FF8200]">
+                    <p class="error-message" id="wedding-email-error">Please enter a valid email.</p>
+                </div>
+                <div>
+                    <label for="wedding-message" class="block text-sm font-medium text-gray-700">Tell us about your event</label>
+                    <textarea id="wedding-message" name="message" rows="4" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-[#FF8200] focus:border-[#FF8200]"></textarea>
+                    <p class="error-message" id="wedding-message-error">Message is required.</p>
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="w-full px-6 py-3 rounded-md btn-primary uppercase font-bold text-sm">Submit Inquiry</button>
+                    <p class="text-sm text-gray-600 mt-4">or</p>
+                    <a href="#" class="inline-block mt-2 font-semibold text-[#FF8200] hover:underline">Book a Free Consultation</a>
+                </div>
             </form>
         </div>
     </div>
-
     <!-- Contact Modal -->
-    <div id="contactModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 modal-backdrop">
-        <div class="bg-white rounded-lg shadow-2xl w-full max-w-md p-8 relative">
-            <button onclick="closeModal('contactModal')" class="absolute top-4 right-4 text-gray-400 hover:text-gray-800">&times;</button>
-            <h3 class="text-2xl font-bold text-center mb-6">Contact Us</h3>
-            <form id="contactForm">
-                <input type="text" placeholder="Full Name" class="w-full p-3 mb-4 border rounded-lg" required>
-                <input type="email" placeholder="Email Address" class="w-full p-3 mb-4 border rounded-lg" required>
-                <textarea placeholder="Your Message..." class="w-full p-3 mb-4 border rounded-lg h-32" required></textarea>
-                <button type="submit" class="w-full btn-primary rounded-lg p-4 font-semibold uppercase">Send Message</button>
+    <div id="contactModal" class="modal fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center p-4 z-50 opacity-0 invisible">
+        <div class="modal-content bg-white rounded-lg p-8 max-w-md w-full relative transform scale-95">
+            <button onclick="closeModal('contactModal')" class="absolute top-4 right-4 text-gray-600 hover:text-gray-900">&times;</button>
+            <h3 class="text-2xl font-bold mb-6 text-center">General Contact</h3>
+            <form id="contactForm" class="space-y-4">
+                 <input type="hidden" name="form_type" value="General Contact">
+                <div>
+                    <label for="contact-name" class="block text-sm font-medium text-gray-700">Name</label>
+                    <input type="text" id="contact-name" name="name" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-[#FF8200] focus:border-[#FF8200]">
+                    <p class="error-message" id="contact-name-error">Name is required.</p>
+                </div>
+                <div>
+                    <label for="contact-email" class="block text-sm font-medium text-gray-700">Email</label>
+                    <input type="email" id="contact-email" name="email" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-[#FF8200] focus:border-[#FF8200]">
+                    <p class="error-message" id="contact-email-error">Please enter a valid email.</p>
+                </div>
+                <div>
+                    <label for="contact-message" class="block text-sm font-medium text-gray-700">Message</label>
+                    <textarea id="contact-message" name="message" rows="4" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-[#FF8200] focus:border-[#FF8200]"></textarea>
+                    <p class="error-message" id="contact-message-error">Message is required.</p>
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="w-full px-6 py-3 rounded-md btn-primary uppercase font-bold text-sm">Send Message</button>
+                    <p class="text-sm text-gray-600 mt-4">or</p>
+                    <a href="#" class="inline-block mt-2 font-semibold text-[#FF8200] hover:underline">Book a Free Consultation</a>
+                </div>
             </form>
         </div>
     </div>
-    
-    <!-- Scripts -->
+
+
     <script>
+        // Mobile menu toggle
         const mobileMenuButton = document.getElementById('mobile-menu-button');
         const mobileMenu = document.getElementById('mobile-menu');
-
         mobileMenuButton.addEventListener('click', () => {
             mobileMenu.classList.toggle('hidden');
         });
 
+        // Close mobile menu when a link is clicked
         document.querySelectorAll('#mobile-menu a').forEach(link => {
             link.addEventListener('click', () => {
                 mobileMenu.classList.add('hidden');
             });
         });
 
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // FAQ Accordion
+        const accordionItems = document.querySelectorAll('#faq-accordion button');
+        accordionItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const content = item.nextElementSibling;
+                const icon = item.querySelector('svg');
+                
+                // Close all other items
+                accordionItems.forEach(otherItem => {
+                    if (otherItem !== item) {
+                        otherItem.nextElementSibling.classList.add('hidden');
+                        otherItem.querySelector('svg').classList.remove('rotate-180');
+                    }
+                });
+
+                content.classList.toggle('hidden');
+                icon.classList.toggle('rotate-180');
+            });
+        });
+
+        // Modal functionality
         function openModal(modalId) {
             const modal = document.getElementById(modalId);
-            modal.classList.remove('hidden');
-            modal.classList.add('flex');
-            document.body.style.overflow = 'hidden';
+            modal.classList.remove('invisible', 'opacity-0');
+            modal.querySelector('.modal-content').classList.remove('scale-95');
         }
 
         function closeModal(modalId) {
             const modal = document.getElementById(modalId);
-            modal.classList.add('hidden');
-            modal.classList.remove('flex');
-            document.body.style.overflow = 'auto';
+            modal.classList.add('opacity-0');
+            modal.querySelector('.modal-content').classList.add('scale-95');
+            setTimeout(() => {
+                modal.classList.add('invisible');
+            }, 300);
         }
+        
+        // Close modal on escape key press
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape') {
+                document.querySelectorAll('.modal').forEach(modal => {
+                    if (!modal.classList.contains('invisible')) {
+                        closeModal(modal.id);
+                    }
+                });
+            }
+        });
 
-        document.querySelectorAll('.modal-backdrop').forEach(backdrop => {
-            backdrop.addEventListener('click', function(event) {
+        // Close modal on outside click
+         document.querySelectorAll('.modal').forEach(modal => {
+            modal.addEventListener('click', function(event) {
                 if (event.target === this) {
                     closeModal(this.id);
                 }
             });
         });
         
-        document.addEventListener('keydown', (event) => {
-            if (event.key === 'Escape') {
-                closeModal('rentalsModal');
-                closeModal('eventsModal');
-                closeModal('contactModal');
+        // Form Validation and Submission
+        const forms = [
+            { id: 'contactForm', nameField: 'contact-name', emailField: 'contact-email', messageField: 'contact-message' },
+            { id: 'rentalsForm', nameField: 'rental-name', emailField: 'rental-email', messageField: 'rental-message' },
+            { id: 'weddingsForm', nameField: 'wedding-name', emailField: 'wedding-email', messageField: 'wedding-message' }
+        ];
+
+        forms.forEach(formInfo => {
+            const form = document.getElementById(formInfo.id);
+            if(form) {
+                form.addEventListener('submit', function(event) {
+                    event.preventDefault();
+                    if (validateForm(formInfo)) {
+                        // If validation passes, you can proceed with form submission logic
+                        console.log(`Form ${formInfo.id} submitted`);
+                        // Later, this will be replaced with a fetch call to the Cloudflare Worker
+                    }
+                });
             }
         });
 
-        // FAQ Accordion
-        const accordionButtons = document.querySelectorAll('#faq-accordion button');
-        accordionButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                const content = button.nextElementSibling;
-                const icon = button.querySelector('svg');
+        function validateForm(formInfo) {
+            let isValid = true;
+            const nameInput = document.getElementById(formInfo.nameField);
+            const emailInput = document.getElementById(formInfo.emailField);
+            const messageInput = document.getElementById(formInfo.messageField);
 
-                if (content.style.maxHeight) {
-                    content.style.maxHeight = null;
-                    icon.classList.remove('rotate-180');
-                } else {
-                    // Optional: Close other open items
-                    accordionButtons.forEach(otherButton => {
-                        otherButton.nextElementSibling.style.maxHeight = null;
-                        otherButton.querySelector('svg').classList.remove('rotate-180');
-                    });
-                    content.style.maxHeight = content.scrollHeight + "px";
-                    icon.classList.add('rotate-180');
-                }
-            });
-        });
-    </script>
+            const nameError = document.getElementById(`${formInfo.nameField}-error`);
+            const emailError = document.getElementById(`${formInfo.emailField}-error`);
+            const messageError = document.getElementById(`${formInfo.messageField}-error`);
+            
+            // Reset errors
+            nameError.style.display = 'none';
+            emailError.style.display = 'none';
+            messageError.style.display = 'none';
+            nameInput.classList.remove('border-red-500');
+            emailInput.classList.remove('border-red-500');
+            messageInput.classList.remove('border-red-500');
 
-    <!-- Firebase SDK -->
-    <script type="module">
-        // Import the functions you need from the SDKs you need
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-        import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
-        import { getAuth } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-        import { getStorage } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-storage.js";
+            // Validate Name
+            if (nameInput.value.trim() === '') {
+                nameError.style.display = 'block';
+                nameInput.classList.add('border-red-500');
+                isValid = false;
+            }
 
-        // IMPORTANT: PASTE YOUR FIREBASE CONFIGURATION OBJECT HERE
-        const firebaseConfig = {
-            apiKey: "YOUR_API_KEY",
-            authDomain: "YOUR_AUTH_DOMAIN",
-            projectId: "YOUR_PROJECT_ID",
-            storageBucket: "YOUR_STORAGE_BUCKET",
-            messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-            appId: "YOUR_APP_ID"
-        };
+            // Validate Email
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(emailInput.value)) {
+                emailError.style.display = 'block';
+                emailInput.classList.add('border-red-500');
+                isValid = false;
+            }
 
-        // Initialize Firebase
-        try {
-            const app = initializeApp(firebaseConfig);
-            const db = getFirestore(app);
-            const auth = getAuth(app);
-            const storage = getStorage(app);
-            console.log("Firebase Initialized Successfully!");
+            // Validate Message
+            if (messageInput.value.trim() === '') {
+                messageError.style.display = 'block';
+                messageInput.classList.add('border-red-500');
+                isValid = false;
+            }
 
-            // Example: Hook up the contact form
-            const contactForm = document.getElementById('contactForm');
-            contactForm.addEventListener('submit', async (e) => {
-                e.preventDefault();
-                
-                const name = contactForm.querySelector('input[type="text"]').value;
-                const email = contactForm.querySelector('input[type="email"]').value;
-                const message = contactForm.querySelector('textarea').value;
-
-                try {
-                    const docRef = await addDoc(collection(db, "submissions"), {
-                        form: 'contact',
-                        name: name,
-                        email: email,
-                        message: message,
-                        submittedAt: new Date()
-                    });
-                    console.log("Document written with ID: ", docRef.id);
-                    alert('Thank you! Your message has been sent.');
-                    contactForm.reset();
-                    closeModal('contactModal');
-                } catch (error) {
-                    console.error("Error adding document: ", error);
-                    alert('Sorry, there was an error sending your message. Please try again.');
-                }
-            });
-
-        } catch (error) {
-            console.error("Firebase initialization failed:", error);
-            // In a real app, you might want to disable form submissions here
+            return isValid;
         }
+
     </script>
 </body>
+
 </html>
 
