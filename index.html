@@ -41,6 +41,10 @@
             transform: translateY(-2px);
             box-shadow: 0 4px 10px rgba(255, 130, 0, 0.4);
         }
+       .btn-primary:disabled {
+            background-color: #fca5a5; /* A lighter orange/red to indicate disabled */
+            cursor: not-allowed;
+        }
         .btn-secondary {
             background-color: transparent;
             border: 2px solid #FF8200;
@@ -99,6 +103,21 @@
             font-size: 0.875rem; /* text-sm */
             margin-top: 0.25rem; /* mt-1 */
             display: none; /* hidden by default */
+        }
+        .form-feedback {
+            display: none;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin-top: 1rem;
+            text-align: center;
+        }
+        .form-feedback.success {
+            background-color: #d1fae5; /* green-100 */
+            color: #065f46; /* green-800 */
+        }
+        .form-feedback.error {
+            background-color: #fee2e2; /* red-100 */
+            color: #991b1b; /* red-800 */
         }
     </style>
      <script type="application/ld+json">
@@ -418,13 +437,14 @@
                     <label for="rental-message" class="block text-sm font-medium text-gray-700">Tell us about your rental needs</label>
                     <textarea id="rental-message" name="message" rows="4" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-[#FF8200] focus:border-[#FF8200]"></textarea>
                      <p class="error-message" id="rental-message-error">Message is required.</p>
-                </div>
-                <div class="text-center">
-                    <button type="submit" class="w-full px-6 py-3 rounded-md btn-primary uppercase font-bold text-sm">Submit Inquiry</button>
-                    <p class="text-sm text-gray-600 mt-4">or</p>
-                    <a href="#" class="inline-block mt-2 font-semibold text-[#FF8200] hover:underline">Book a Free Consultation</a>
-                </div>
-            </form>
+                    <!-- Modal Footer -->
+                    <div class="flex items-center justify-end p-6 border-t border-gray-600 rounded-b">
+                        <button onclick="closeModal('rentals-modal')" type="button" class="text-white bg-gray-600 hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-3">Close</button>
+                        <a href="https://calendly.com/virtueproductionco/30min" target="_blank" class="text-white bg-vp-orange hover:bg-orange-600 focus:ring-4 focus:outline-none focus:ring-orange-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-3 uppercase">Book a Consultation</a>
+                        <button type="submit" class="text-white bg-vp-blue hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center uppercase">Submit Inquiry</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
     <!-- Weddings Modal -->
@@ -448,13 +468,14 @@
                     <label for="wedding-message" class="block text-sm font-medium text-gray-700">Tell us about your event</label>
                     <textarea id="wedding-message" name="message" rows="4" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-[#FF8200] focus:border-[#FF8200]"></textarea>
                     <p class="error-message" id="wedding-message-error">Message is required.</p>
-                </div>
-                <div class="text-center">
-                    <button type="submit" class="w-full px-6 py-3 rounded-md btn-primary uppercase font-bold text-sm">Submit Inquiry</button>
-                    <p class="text-sm text-gray-600 mt-4">or</p>
-                    <a href="#" class="inline-block mt-2 font-semibold text-[#FF8200] hover:underline">Book a Free Consultation</a>
-                </div>
-            </form>
+                    <!-- Modal Footer -->
+                    <div class="flex items-center justify-end p-6 border-t border-gray-600 rounded-b">
+                        <button onclick="closeModal('events-modal')" type="button" class="text-white bg-gray-600 hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-3">Close</button>
+                        <a href="https://calendly.com/virtueproductionco/30min" target="_blank" class="text-white bg-vp-orange hover:bg-orange-600 focus:ring-4 focus:outline-none focus:ring-orange-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-3 uppercase">Book a Consultation</a>
+                        <button type="submit" class="text-white bg-vp-blue hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center uppercase">Submit Inquiry</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
     <!-- Contact Modal -->
@@ -462,13 +483,14 @@
         <div class="modal-content bg-white rounded-lg p-8 max-w-md w-full relative transform scale-95">
             <button onclick="closeModal('contactModal')" class="absolute top-4 right-4 text-gray-600 hover:text-gray-900">&times;</button>
             <h3 class="text-2xl font-bold mb-6 text-center">General Contact</h3>
-            <form id="contactForm" class="space-y-4">
-                 <input type="hidden" name="form_type" value="General Contact">
-                <div>
-                    <label for="contact-name" class="block text-sm font-medium text-gray-700">Name</label>
-                    <input type="text" id="contact-name" name="name" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-[#FF8200] focus:border-[#FF8200]">
-                    <p class="error-message" id="contact-name-error">Name is required.</p>
-                </div>
+                    <!-- Modal Footer -->
+                    <div class="flex items-center justify-end p-6 border-t border-gray-600 rounded-b">
+                        <button onclick="closeModal('contact-modal')" type="button" class="text-white bg-gray-600 hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-3">Close</button>
+                        <a href="https://calendly.com/virtueproductionco/30min" target="_blank" class="text-white bg-vp-orange hover:bg-orange-600 focus:ring-4 focus:outline-none focus:ring-orange-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-3 uppercase">Book a Consultation</a>
+                        <button type="submit" class="text-white bg-vp-blue hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center uppercase">Submit Inquiry</button>
+                    </div>
+                </form>
+            </div>
                 <div>
                     <label for="contact-email" class="block text-sm font-medium text-gray-700">Email</label>
                     <input type="email" id="contact-email" name="email" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-[#FF8200] focus:border-[#FF8200]">
@@ -484,12 +506,16 @@
                     <p class="text-sm text-gray-600 mt-4">or</p>
                     <a href="#" class="inline-block mt-2 font-semibold text-[#FF8200] hover:underline">Book a Free Consultation</a>
                 </div>
+                <div class="form-feedback" id="contactForm-feedback"></div>
             </form>
         </div>
     </div>
 
 
     <script>
+        // --- CONFIGURATION ---
+        const workerUrl = 'PASTE_YOUR_WORKER_URL_HERE'; // <-- IMPORTANT: PASTE YOUR URL HERE
+
         // Mobile menu toggle
         const mobileMenuButton = document.getElementById('mobile-menu-button');
         const mobileMenu = document.getElementById('mobile-menu');
@@ -521,7 +547,6 @@
                 const content = item.nextElementSibling;
                 const icon = item.querySelector('svg');
                 
-                // Close all other items
                 accordionItems.forEach(otherItem => {
                     if (otherItem !== item) {
                         otherItem.nextElementSibling.classList.add('hidden');
@@ -550,7 +575,6 @@
             }, 300);
         }
         
-        // Close modal on escape key press
         document.addEventListener('keydown', (event) => {
             if (event.key === 'Escape') {
                 document.querySelectorAll('.modal').forEach(modal => {
@@ -561,7 +585,6 @@
             }
         });
 
-        // Close modal on outside click
          document.querySelectorAll('.modal').forEach(modal => {
             modal.addEventListener('click', function(event) {
                 if (event.target === this) {
@@ -570,7 +593,7 @@
             });
         });
         
-        // Form Validation and Submission
+        // Form Setup
         const forms = [
             { id: 'contactForm', nameField: 'contact-name', emailField: 'contact-email', messageField: 'contact-message' },
             { id: 'rentalsForm', nameField: 'rental-name', emailField: 'rental-email', messageField: 'rental-message' },
@@ -583,9 +606,7 @@
                 form.addEventListener('submit', function(event) {
                     event.preventDefault();
                     if (validateForm(formInfo)) {
-                        // If validation passes, you can proceed with form submission logic
-                        console.log(`Form ${formInfo.id} submitted`);
-                        // Later, this will be replaced with a fetch call to the Cloudflare Worker
+                        handleFormSubmit(form);
                     }
                 });
             }
@@ -601,7 +622,6 @@
             const emailError = document.getElementById(`${formInfo.emailField}-error`);
             const messageError = document.getElementById(`${formInfo.messageField}-error`);
             
-            // Reset errors
             nameError.style.display = 'none';
             emailError.style.display = 'none';
             messageError.style.display = 'none';
@@ -609,14 +629,12 @@
             emailInput.classList.remove('border-red-500');
             messageInput.classList.remove('border-red-500');
 
-            // Validate Name
             if (nameInput.value.trim() === '') {
                 nameError.style.display = 'block';
                 nameInput.classList.add('border-red-500');
                 isValid = false;
             }
 
-            // Validate Email
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             if (!emailRegex.test(emailInput.value)) {
                 emailError.style.display = 'block';
@@ -624,7 +642,6 @@
                 isValid = false;
             }
 
-            // Validate Message
             if (messageInput.value.trim() === '') {
                 messageError.style.display = 'block';
                 messageInput.classList.add('border-red-500');
@@ -634,8 +651,57 @@
             return isValid;
         }
 
+        async function handleFormSubmit(formElement) {
+            const submitButton = formElement.querySelector('button[type="submit"]');
+            const feedbackElement = document.getElementById(`${formElement.id}-feedback`);
+            
+            submitButton.disabled = true;
+            submitButton.textContent = 'Submitting...';
+            feedbackElement.style.display = 'none';
+
+            const formData = new FormData(formElement);
+            const data = Object.fromEntries(formData.entries());
+
+            try {
+                if (workerUrl === 'PASTE_YOUR_WORKER_URL_HERE' || !workerUrl) {
+                    throw new Error('Worker URL is not configured.');
+                }
+
+                const response = await fetch(workerUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                if (!response.ok) {
+                    throw new Error(`Server responded with status: ${response.status}`);
+                }
+
+                const result = await response.json();
+                
+                showFeedback(feedbackElement, 'Thank you! Your message has been sent.', 'success');
+                formElement.reset();
+
+            } catch (error) {
+                console.error('Submission error:', error);
+                showFeedback(feedbackElement, 'An error occurred. Please try again later.', 'error');
+            } finally {
+                submitButton.disabled = false;
+                submitButton.textContent = formElement.id === 'contactForm' ? 'Send Message' : 'Submit Inquiry';
+            }
+        }
+
+        function showFeedback(element, message, type) {
+            element.textContent = message;
+            element.className = `form-feedback ${type}`;
+            element.style.display = 'block';
+        }
+
     </script>
 </body>
 
 </html>
+
 
