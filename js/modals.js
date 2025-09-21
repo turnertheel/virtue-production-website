@@ -19,6 +19,19 @@ async function openModal(modalId, contentUrl) {
         const html = await response.text();
         contentContainer.innerHTML = html;
 
+        // **NEW**: Manually render the Turnstile widget after the form is loaded
+        const turnstileWidget = contentContainer.querySelector('.cf-turnstile');
+        if (turnstileWidget && window.turnstile) {
+            const siteKey = turnstileWidget.dataset.sitekey;
+            turnstile.render(turnstileWidget, {
+                sitekey: siteKey,
+                callback: function(token) {
+                    // This calls the global function located in forms.js
+                    setTurnstileToken(token);
+                },
+            });
+        }
+
         // The form now exists in the DOM, so we can attach the event listener
         const form = contentContainer.querySelector('form');
         if (form) {
@@ -72,4 +85,3 @@ document.querySelectorAll('.modal').forEach(modal => {
         }
     });
 });
-
