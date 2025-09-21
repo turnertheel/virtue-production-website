@@ -1,19 +1,34 @@
-// --- State for Turnstile Token ---
-let turnstileToken = null;
+// --- Global Turnstile Callback Functions ---
 
-// The callback function that Turnstile will call upon success
-// This function needs to be globally accessible, so we attach it to the window object.
+// This function is called by Turnstile when the challenge is successfully completed.
 window.onTurnstileSuccess = function (token) {
-    turnstileToken = token;
-    // We can also find the hidden input in the active form and set its value
     const activeForm = document.querySelector('.modal:not(.invisible) form');
     if (activeForm) {
-        let hiddenInput = activeForm.querySelector('[name="cf-turnstile-response"]');
-        if (hiddenInput) {
-            hiddenInput.value = token;
+        // Enable the submit button now that we have a valid token.
+        const submitButton = activeForm.querySelector('button[type="submit"]');
+        if (submitButton) {
+            submitButton.disabled = false;
+        }
+        // Also hide any "please wait" messages.
+        const feedback = activeForm.querySelector('.form-feedback');
+        if (feedback && feedback.textContent.includes('Verifying')) {
+             feedback.style.display = 'none';
         }
     }
 };
+
+// This function is called if the Turnstile challenge expires.
+window.onTurnstileExpire = function () {
+    const activeForm = document.querySelector('.modal:not(.invisible) form');
+    if (activeForm) {
+        // Disable the submit button again.
+        const submitButton = activeForm.querySelector('button[type="submit"]');
+        if (submitButton) {
+            submitButton.disabled = true;
+        }
+        showFeedback(activeForm.id, 'Verification expired. The page may need to be reloaded.', 'error');
+    }
+}
 
 
 // --- Modal Functionality ---
@@ -24,9 +39,6 @@ async function openModal(modalId, contentUrl) {
 
     const contentContainer = document.getElementById(`${modalId}Content`);
     if (!contentContainer) return;
-
-    // Reset turnstile token when a new modal opens
-    turnstileToken = null;
 
     // Show modal with a loading state
     contentContainer.innerHTML = '<p class="text-center p-8">Loading...</p>';
@@ -40,20 +52,20 @@ async function openModal(modalId, contentUrl) {
         const html = await response.text();
         contentContainer.innerHTML = html;
 
-        // The form now exists in the DOM, so we can attach the event listener
         const form = contentContainer.querySelector('form');
         if (form) {
             form.addEventListener('submit', (event) => {
                 event.preventDefault();
-                handleFormSubmit(form); // Assumes handleFormSubmit is in forms.js
+                handleFormSubmit(form);
             });
+             // Show a message while Turnstile loads
+            showFeedback(form.id, 'Verifying you are human, please wait...', 'info');
         }
         
-        // Render the Turnstile widget if it exists in the loaded content
+        // Render the Turnstile widget
         if (window.turnstile) {
             const turnstileDiv = contentContainer.querySelector('.cf-turnstile');
             if(turnstileDiv) {
-                // Explicitly render the widget and capture its ID
                 const widgetId = turnstile.render(turnstileDiv);
                 turnstileDiv.dataset.widgetId = widgetId;
             }
@@ -76,7 +88,6 @@ function closeModal(modalId) {
         }
         setTimeout(() => {
             modal.classList.add('invisible');
-            // Clear content when closing to ensure forms are fresh on next open
             const contentContainer = document.getElementById(`${modalId}Content`);
             if (contentContainer) {
                 contentContainer.innerHTML = '';
@@ -98,7 +109,6 @@ document.addEventListener('keydown', (event) => {
 
 document.querySelectorAll('.modal').forEach(modal => {
     modal.addEventListener('click', function(event) {
-        // Close if the click is on the modal backdrop, not the content
         if (event.target === this) {
             closeModal(this.id);
         }
