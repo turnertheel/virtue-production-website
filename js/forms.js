@@ -21,8 +21,9 @@ function validateForm(form) {
                 fieldIsValid = false;
             }
         } else if (input.type === 'checkbox') {
+            // Checkboxes are often not required, but if they are...
             const checkboxGroup = form.querySelectorAll(`input[name="${input.name}"]`);
-             if (![...checkboxGroup].some(checkbox => checkbox.checked)) {
+             if (input.required && ![...checkboxGroup].some(checkbox => checkbox.checked)) {
                 fieldIsValid = false;
             }
         } else if (input.type === 'email') {
@@ -41,6 +42,7 @@ function validateForm(form) {
                 if (groupLabel) {
                     groupLabel.classList.add('text-red-500');
                 } else {
+                    // Fallback for checkbox groups without a main label
                     fieldContainer.classList.add('text-red-500');
                 }
             } else {
@@ -59,6 +61,12 @@ async function handleFormSubmit(formElement) {
         return;
     }
 
+    // Check if the global turnstileToken has been set by the callback
+    if (!turnstileToken) {
+        showFeedback(formElement.id, 'Could not verify you are human. Please wait a moment and try again.', 'error');
+        return;
+    }
+
     const submitButton = formElement.querySelector('button[type="submit"]');
     
     submitButton.disabled = true;
@@ -67,6 +75,9 @@ async function handleFormSubmit(formElement) {
 
     const formData = new FormData(formElement);
     const data = Object.fromEntries(formData.entries());
+
+    // Add the globally stored Turnstile token to our data payload
+    data['cf-turnstile-response'] = turnstileToken;
 
     // Special handling for checkboxes
     const checkboxGroups = {};
@@ -82,24 +93,6 @@ async function handleFormSubmit(formElement) {
     for (const key in checkboxGroups) {
         data[key] = checkboxGroups[key].length > 0 ? checkboxGroups[key] : [];
     }
-
-    // --- !! ROBUST FIX !! ---
-    // Manually grab the Turnstile token and check if it exists before submitting.
-    const turnstileResponse = formElement.querySelector('[name="cf-turnstile-response"]');
-    if (!turnstileResponse || !turnstileResponse.value) {
-        // If the token is missing, the verification will fail. Show a user-friendly error.
-        showFeedback(formElement.id, 'Could not verify you are human. Please wait a moment and try again.', 'error');
-        // Re-enable the submit button so the user can retry.
-        submitButton.disabled = false;
-        if (formElement.id === 'weddingsForm') {
-            submitButton.textContent = 'Submit Application';
-        } else {
-            submitButton.textContent = 'Submit Inquiry';
-        }
-        return; // Stop the function
-    }
-    data['cf-turnstile-response'] = turnstileResponse.value;
-    // --- END FIX ---
 
 
     try {
@@ -121,8 +114,8 @@ async function handleFormSubmit(formElement) {
         
         if (window.turnstile) {
             const widget = formElement.querySelector('.cf-turnstile');
-            if (widget) {
-                turnstile.reset(widget);
+            if (widget && widget.dataset.widgetId) {
+                turnstile.reset(widget.dataset.widgetId);
             }
         }
         setTimeout(() => closeModal(formElement.closest('.modal').id), 3000);

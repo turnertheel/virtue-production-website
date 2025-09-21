@@ -1,3 +1,21 @@
+// --- State for Turnstile Token ---
+let turnstileToken = null;
+
+// The callback function that Turnstile will call upon success
+// This function needs to be globally accessible, so we attach it to the window object.
+window.onTurnstileSuccess = function (token) {
+    turnstileToken = token;
+    // We can also find the hidden input in the active form and set its value
+    const activeForm = document.querySelector('.modal:not(.invisible) form');
+    if (activeForm) {
+        let hiddenInput = activeForm.querySelector('[name="cf-turnstile-response"]');
+        if (hiddenInput) {
+            hiddenInput.value = token;
+        }
+    }
+};
+
+
 // --- Modal Functionality ---
 
 async function openModal(modalId, contentUrl) {
@@ -6,6 +24,9 @@ async function openModal(modalId, contentUrl) {
 
     const contentContainer = document.getElementById(`${modalId}Content`);
     if (!contentContainer) return;
+
+    // Reset turnstile token when a new modal opens
+    turnstileToken = null;
 
     // Show modal with a loading state
     contentContainer.innerHTML = '<p class="text-center p-8">Loading...</p>';
@@ -32,7 +53,9 @@ async function openModal(modalId, contentUrl) {
         if (window.turnstile) {
             const turnstileDiv = contentContainer.querySelector('.cf-turnstile');
             if(turnstileDiv) {
-                turnstile.render(turnstileDiv);
+                // Explicitly render the widget and capture its ID
+                const widgetId = turnstile.render(turnstileDiv);
+                turnstileDiv.dataset.widgetId = widgetId;
             }
         }
 
@@ -53,7 +76,7 @@ function closeModal(modalId) {
         }
         setTimeout(() => {
             modal.classList.add('invisible');
-            // Clear content when closing
+            // Clear content when closing to ensure forms are fresh on next open
             const contentContainer = document.getElementById(`${modalId}Content`);
             if (contentContainer) {
                 contentContainer.innerHTML = '';
@@ -81,3 +104,4 @@ document.querySelectorAll('.modal').forEach(modal => {
         }
     });
 });
+
