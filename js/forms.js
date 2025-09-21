@@ -1,6 +1,15 @@
 // --- CONFIGURATION ---
 const workerUrl = 'https://virtue-production-backend.virtueproductionco.workers.dev';
 
+// --- Global variable to hold the Turnstile token ---
+let turnstileToken = '';
+
+// --- Callback function for Turnstile ---
+function setTurnstileToken(token) {
+    turnstileToken = token;
+}
+
+
 // --- Form Validation and Submission ---
 
 function validateForm(form) {
@@ -49,9 +58,9 @@ async function handleFormSubmit(formElement) {
         return;
     }
 
-    // This check is now a fallback, as the primary verification happens in modals.js
+    // This check is now the primary verification before sending
     if (!turnstileToken) {
-        showFeedback(formElement.id, 'Could not verify you are human. Please wait a moment and try again.', 'error');
+        showFeedback(formElement.id, 'Could not verify you are human. Please complete the CAPTCHA.', 'error');
         return;
     }
 
@@ -75,7 +84,7 @@ async function handleFormSubmit(formElement) {
     });
 
     for (const key in checkboxGroups) {
-        data[key] = checkboxGroups[key].length > 0 ? checkboxGroups[key] : [];
+        data[key] = checkboxGroups[key].length > 0 ? checkboxGroups[key].join(', ') : '';
     }
 
 
@@ -96,10 +105,11 @@ async function handleFormSubmit(formElement) {
         
         showFeedback(formElement.id, 'Thank you! Your message has been sent.', 'success');
         
+        // Reset the turnstile widget after successful submission
         if (window.turnstile) {
             const widget = formElement.querySelector('.cf-turnstile');
-            if (widget && widget.dataset.widgetId) {
-                turnstile.reset(widget.dataset.widgetId);
+            if (widget && widget.id) {
+                turnstile.reset(`#${widget.id}`);
             }
         }
         setTimeout(() => closeModal(formElement.closest('.modal').id), 3000);
@@ -125,4 +135,3 @@ function showFeedback(formId, message, type) {
         feedbackElement.style.display = message ? 'block' : 'none';
     }
 }
-
