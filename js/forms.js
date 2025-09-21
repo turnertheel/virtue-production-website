@@ -85,6 +85,15 @@ async function handleFormSubmit(formElement) {
         data[key] = checkboxGroups[key].length > 0 ? checkboxGroups[key] : [];
     }
 
+    // --- !! NEW FIX !! ---
+    // Manually ensure the Turnstile response is included.
+    // FormData can sometimes miss it, especially when forms are loaded dynamically.
+    const turnstileResponse = formElement.querySelector('[name="cf-turnstile-response"]');
+    if (turnstileResponse && turnstileResponse.value) {
+        data['cf-turnstile-response'] = turnstileResponse.value;
+    }
+    // --- END FIX ---
+
 
     try {
         if (!workerUrl) throw new Error('Worker URL is not configured.');
@@ -132,3 +141,4 @@ function showFeedback(formId, message, type) {
         feedbackElement.style.display = message ? 'block' : 'none';
     }
 }
+
