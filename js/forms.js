@@ -21,7 +21,6 @@ function validateForm(form) {
                 fieldIsValid = false;
             }
         } else if (input.type === 'checkbox') {
-            // Checkboxes are often not required, but if they are...
             const checkboxGroup = form.querySelectorAll(`input[name="${input.name}"]`);
              if (![...checkboxGroup].some(checkbox => checkbox.checked)) {
                 fieldIsValid = false;
@@ -42,7 +41,6 @@ function validateForm(form) {
                 if (groupLabel) {
                     groupLabel.classList.add('text-red-500');
                 } else {
-                    // Fallback for checkbox groups without a main label
                     fieldContainer.classList.add('text-red-500');
                 }
             } else {
@@ -85,13 +83,22 @@ async function handleFormSubmit(formElement) {
         data[key] = checkboxGroups[key].length > 0 ? checkboxGroups[key] : [];
     }
 
-    // --- !! NEW FIX !! ---
-    // Manually ensure the Turnstile response is included.
-    // FormData can sometimes miss it, especially when forms are loaded dynamically.
+    // --- !! ROBUST FIX !! ---
+    // Manually grab the Turnstile token and check if it exists before submitting.
     const turnstileResponse = formElement.querySelector('[name="cf-turnstile-response"]');
-    if (turnstileResponse && turnstileResponse.value) {
-        data['cf-turnstile-response'] = turnstileResponse.value;
+    if (!turnstileResponse || !turnstileResponse.value) {
+        // If the token is missing, the verification will fail. Show a user-friendly error.
+        showFeedback(formElement.id, 'Could not verify you are human. Please wait a moment and try again.', 'error');
+        // Re-enable the submit button so the user can retry.
+        submitButton.disabled = false;
+        if (formElement.id === 'weddingsForm') {
+            submitButton.textContent = 'Submit Application';
+        } else {
+            submitButton.textContent = 'Submit Inquiry';
+        }
+        return; // Stop the function
     }
+    data['cf-turnstile-response'] = turnstileResponse.value;
     // --- END FIX ---
 
 
