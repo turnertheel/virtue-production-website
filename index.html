@@ -267,8 +267,8 @@
                 <div class="space-y-4" id="faq-accordion">
                     <!-- FAQ Item 1 -->
                     <div class="border rounded-lg">
-                        <button class="w-full text-left p-4 font-semibold text-lg flex justify-between items-center focus:outline-none">
-                            What types of events do you service?
+                        <button class="w-full text-left p-4 font-semibold text-lg flex justify-between items-center focus:outline-none" aria-label="Toggle FAQ answer 1">
+                            <span>What types of events do you service?</span>
                             <svg class="w-5 h-5 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                         </button>
                         <div class="p-4 bg-gray-50 hidden">
@@ -277,8 +277,8 @@
                     </div>
                     <!-- FAQ Item 2 -->
                     <div class="border rounded-lg">
-                        <button class="w-full text-left p-4 font-semibold text-lg flex justify-between items-center focus:outline-none">
-                            Do you offer delivery and setup for audio rentals?
+                        <button class="w-full text-left p-4 font-semibold text-lg flex justify-between items-center focus:outline-none" aria-label="Toggle FAQ answer 2">
+                            <span>Do you offer delivery and setup for audio rentals?</span>
                             <svg class="w-5 h-5 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                         </button>
                         <div class="p-4 bg-gray-50 hidden">
@@ -287,8 +287,8 @@
                     </div>
                     <!-- FAQ Item 3 -->
                     <div class="border rounded-lg">
-                        <button class="w-full text-left p-4 font-semibold text-lg flex justify-between items-center focus:outline-none">
-                            How do I book your services?
+                        <button class="w-full text-left p-4 font-semibold text-lg flex justify-between items-center focus:outline-none" aria-label="Toggle FAQ answer 3">
+                            <span>How do I book your services?</span>
                             <svg class="w-5 h-5 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                         </button>
                         <div class="p-4 bg-gray-50 hidden">
@@ -307,8 +307,8 @@
             <p>&copy; 2024 Virtue Production. All Rights Reserved.</p>
             <p>Nashville, Tennessee</p>
             <div class="flex justify-center space-x-4 mt-4">
-                <a href="#" class="hover:text-[#FF8200] transition-colors"><i class="fab fa-instagram fa-2x"></i></a>
-                <a href="#" class="hover:text-[#FF8200] transition-colors"><i class="fab fa-facebook-f fa-2x"></i></a>
+                <a href="#" aria-label="Virtue Production on Instagram" class="hover:text-[#FF8200] transition-colors"><i class="fab fa-instagram fa-2x"></i></a>
+                <a href="#" aria-label="Virtue Production on Facebook" class="hover:text-[#FF8200] transition-colors"><i class="fab fa-facebook-f fa-2x"></i></a>
             </div>
         </div>
     </footer>
@@ -317,27 +317,24 @@
     <!-- Rentals Modal -->
     <div id="rentalsModal" class="modal fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center p-4 z-50 opacity-0 invisible">
         <div class="modal-content bg-white rounded-lg p-8 max-w-md w-full relative transform scale-95">
-            <button onclick="closeModal('rentalsModal')" class="absolute top-4 right-4 text-gray-600 hover:text-gray-900 text-3xl font-bold">&times;</button>
+            <button onclick="closeModal('rentalsModal')" class="absolute top-4 right-4 text-gray-600 hover:text-gray-900 text-3xl font-bold" aria-label="Close rentals modal">&times;</button>
             <h3 class="text-2xl font-bold mb-6 text-center">Audio Rental Inquiries</h3>
             <form id="rentalsForm" class="space-y-4">
                 <input type="hidden" name="form_type" value="Rentals">
                 <div>
                     <label for="rental-name" class="block text-sm font-medium text-gray-700">Name</label>
                     <input type="text" id="rental-name" name="name" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-[#FF8200] focus:border-[#FF8200]">
-                    <p class="error-message" id="rental-name-error">Name is required.</p>
                 </div>
                 <div>
                     <label for="rental-email" class="block text-sm font-medium text-gray-700">Email</label>
                     <input type="email" id="rental-email" name="email" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-[#FF8200] focus:border-[#FF8200]">
-                     <p class="error-message" id="rental-email-error">Please enter a valid email.</p>
                 </div>
                 <div>
                     <label for="rental-message" class="block text-sm font-medium text-gray-700">Tell us about your rental needs</label>
                     <textarea id="rental-message" name="message" rows="4" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-[#FF8200] focus:border-[#FF8200]"></textarea>
-                     <p class="error-message" id="rental-message-error">Message is required.</p>
                 </div>
                  <!-- Turnstile Widget -->
-                <div class="cf-turnstile" data-sitekey="PASTE_YOUR_SITE_KEY_HERE" data-callback="onTurnstileSuccess"></div>
+                <div class="cf-turnstile" data-sitekey="0x4AAAAAAAXCijsYmm_Jz7iJ" data-callback="onTurnstileSuccess"></div>
                 <div class="form-feedback" id="rentalsForm-feedback"></div>
                 <!-- Modal Footer -->
                 <div class="flex items-center justify-end pt-4 border-t border-gray-200">
@@ -348,69 +345,59 @@
             </form>
         </div>
     </div>
+
     <!-- Weddings Modal -->
     <div id="weddingsModal" class="modal fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center p-4 z-50 opacity-0 invisible">
-        <div class="modal-content bg-white rounded-lg p-8 max-w-2xl w-full relative transform scale-95 max-h-[90vh] overflow-y-auto">
-            <button onclick="closeModal('weddingsModal')" class="absolute top-4 right-4 text-gray-600 hover:text-gray-900 text-3xl font-bold">&times;</button>
-            <div class="text-center mb-6">
+        <div class="modal-content bg-white rounded-lg p-8 max-w-xl w-full relative transform scale-95 max-h-[90vh] overflow-y-auto">
+            <button onclick="closeModal('weddingsModal')" class="absolute top-4 right-4 text-gray-600 hover:text-gray-900 text-3xl font-bold" aria-label="Close wedding application modal">&times;</button>
+            <div class="text-center mb-8">
                  <h2 class="text-3xl font-bold text-[#032B44]">Wedding Sound Application</h2>
                  <p class="text-gray-600 mt-2">We are so excited for you and your partner! This form helps us get all the details we need to provide a quote. Please be as detailed as possible.</p>
             </div>
             <form id="weddingsForm" class="space-y-6">
                 <input type="hidden" name="form_type" value="Wedding Sound Application">
                 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div>
-                        <label for="wedding-partner1-name" class="form-label">First and Last Name of Bride/Groom/Partner #1 *</label>
-                        <input type="text" id="wedding-partner1-name" name="partner1_name" required class="form-input">
-                    </div>
-                    <div>
-                        <label for="wedding-partner2-name" class="form-label">First and Last Name of Bride/Groom/Partner #2 *</label>
-                        <input type="text" id="wedding-partner2-name" name="partner2_name" required class="form-input">
-                    </div>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div>
-                        <label for="wedding-email" class="form-label">Email *</label>
-                        <input type="email" id="wedding-email" name="email" required class="form-input">
-                    </div>
-                    <div>
-                        <label for="wedding-phone" class="form-label">Phone Number *</label>
-                        <input type="tel" id="wedding-phone" name="phone" required class="form-input">
-                    </div>
-                </div>
-
+                <!-- Single Column Layout Starts Here -->
                 <div>
-                    <label for="wedding-date" class="form-label">When is your wedding? *</label>
+                    <label for="wedding-partner1-name" class="form-label">First and Last Name of Bride/Groom/Partner #1 *</label>
+                    <input type="text" id="wedding-partner1-name" name="partner1_name" required class="form-input">
+                </div>
+                <div>
+                    <label for="wedding-partner2-name" class="form-label">First and Last Name of Bride/Groom/Partner #2 *</label>
+                    <input type="text" id="wedding-partner2-name" name="partner2_name" required class="form-input">
+                </div>
+                <div>
+                    <label for="wedding-email" class="form-label">Email *</label>
+                    <input type="email" id="wedding-email" name="email" required class="form-input">
+                </div>
+                <div>
+                    <label for="wedding-phone" class="form-label">Phone Number *</label>
+                    <input type="tel" id="wedding-phone" name="phone" required class="form-input">
+                </div>
+                <div>
+                    <label for="wedding-date" class="form-label">When is your wedding? * <span class="text-sm font-normal text-gray-500">mm/dd/yyyy</span></label>
                     <input type="date" id="wedding-date" name="wedding_date" required class="form-input">
                 </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div>
-                        <label for="wedding-ceremony-time" class="form-label">What time is your ceremony? *</label>
-                        <input type="text" id="wedding-ceremony-time" name="ceremony_time" required class="form-input">
-                    </div>
-                    <div>
-                        <label for="wedding-reception-time" class="form-label">What time is your reception? *</label>
-                        <input type="text" id="wedding-reception-time" name="reception_time" required class="form-input">
-                    </div>
+                <div>
+                    <label for="wedding-ceremony-time" class="form-label">What time is your ceremony? *</label>
+                    <input type="text" id="wedding-ceremony-time" name="ceremony_time" required class="form-input">
                 </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div>
-                        <label for="wedding-ceremony-location" class="form-label">Where is the ceremony located? *</label>
-                        <input type="text" id="wedding-ceremony-location" name="ceremony_location" required class="form-input">
-                    </div>
-                    <div>
-                        <label for="wedding-reception-location" class="form-label">Where is the reception located? *</label>
-                        <input type="text" id="wedding-reception-location" name="reception_location" placeholder="If same as ceremony, type 'Same'" required class="form-input">
-                    </div>
+                <div>
+                    <label for="wedding-reception-time" class="form-label">What time is your reception? *</label>
+                    <input type="text" id="wedding-reception-time" name="reception_time" required class="form-input">
+                </div>
+                <div>
+                    <label for="wedding-ceremony-location" class="form-label">Where is the ceremony located? *</label>
+                    <input type="text" id="wedding-ceremony-location" name="ceremony_location" required class="form-input">
+                </div>
+                <div>
+                    <label for="wedding-reception-location" class="form-label">Where is the reception located? *</label>
+                    <input type="text" id="wedding-reception-location" placeholder="If same as ceremony, type 'Same'" required class="form-input">
                 </div>
 
                 <div>
                     <label class="form-label">Do you need sound for both the ceremony and reception? *</label>
-                    <div class="flex items-center space-x-4 mt-2">
+                    <div class="flex flex-col sm:flex-row sm:items-center sm:space-x-4 mt-2 space-y-2 sm:space-y-0">
                         <label class="flex items-center"><input type="checkbox" name="sound_needs" value="Ceremony" class="form-checkbox"> <span class="ml-2">Ceremony</span></label>
                         <label class="flex items-center"><input type="checkbox" name="sound_needs" value="Reception" class="form-checkbox"> <span class="ml-2">Reception</span></label>
                         <label class="flex items-center"><input type="checkbox" name="sound_needs" value="Cocktail Hour" class="form-checkbox"> <span class="ml-2">Cocktail Hour</span></label>
@@ -420,13 +407,18 @@
                     <label class="form-label">Do you need sound for the rehearsal?</label>
                     <div class="flex items-center space-x-4 mt-2">
                         <label class="flex items-center"><input type="radio" name="rehearsal_sound" value="Yes" class="form-radio"> <span class="ml-2">Yes</span></label>
-                        <label class="flex items-center"><input type="radio" name="rehearsal_sound" value="No" class="form-radio"> <span class="ml-2">No</span></label>
+                        <label class="flex items-center"><input type="radio" name="rehearsal_sound" value="No" class="form-radio" checked> <span class="ml-2">No</span></label>
                     </div>
                 </div>
                 
                 <div>
-                    <label class="form-label">Do you have a day of wedding schedule? *</label>
-                     <p class="text-xs text-gray-500">If yes, please email the schedule to us at 'Your Email'. Wedding schedule is required.</p>
+                    <div class="flex items-center">
+                        <label class="form-label">Do you have a day of wedding schedule? *</label>
+                        <div class="tooltip-container ml-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-circle text-gray-400" viewBox="0 0 16 16"><path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/><path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z"/></svg>
+                            <span class="tooltip-text">If yes, please email the schedule to us at 'Your Email'. Wedding schedule is required.</span>
+                        </div>
+                    </div>
                     <div class="flex items-center space-x-4 mt-2">
                         <label class="flex items-center"><input type="radio" name="has_schedule" value="Yes" required class="form-radio"> <span class="ml-2">Yes</span></label>
                         <label class="flex items-center"><input type="radio" name="has_schedule" value="No" required class="form-radio"> <span class="ml-2">No</span></label>
@@ -434,17 +426,28 @@
                 </div>
 
                 <div>
-                    <label class="form-label">Which of the following describes the music at your wedding? *</label>
+                     <div class="flex items-center">
+                        <label class="form-label">Which of the following describes the music at your wedding? *</label>
+                         <div class="tooltip-container ml-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-circle text-gray-400" viewBox="0 0 16 16"><path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/><path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z"/></svg>
+                            <span class="tooltip-text">We provide sound support for your DJ, we do not provide DJ services.</span>
+                        </div>
+                    </div>
                     <div class="flex flex-col space-y-2 mt-2">
-                        <label class="flex items-center"><input type="radio" name="music_style" value="DJ" required class="form-radio"> <span class="ml-2">DJ (we provide sound support for your DJ, we do not provide DJ services)</span></label>
+                        <label class="flex items-center"><input type="radio" name="music_style" value="DJ" required class="form-radio"> <span class="ml-2">DJ</span></label>
                         <label class="flex items-center"><input type="radio" name="music_style" value="Live Band/Musicians" required class="form-radio"> <span class="ml-2">Live Band/Musicians</span></label>
                          <label class="flex items-center"><input type="radio" name="music_style" value="Other" required class="form-radio"> <span class="ml-2">Other</span></label>
                     </div>
                 </div>
                 
                 <div>
-                    <label class="form-label">Do you have a designated planner? *</label>
-                    <p class="text-xs text-gray-500">A wedding planner is required for all events unless explicitly approved by Virtue Production Management. If you need a recommendation, please let us know in the additional requests/info section.</p>
+                     <div class="flex items-center">
+                        <label class="form-label">Do you have a designated planner? *</label>
+                         <div class="tooltip-container ml-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-circle text-gray-400" viewBox="0 0 16 16"><path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/><path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z"/></svg>
+                            <span class="tooltip-text">A wedding planner is required for all events unless explicitly approved by Virtue Production Management. If you need a recommendation, please let us know in the additional requests/info section.</span>
+                        </div>
+                    </div>
                     <div class="flex items-center space-x-4 mt-2">
                         <label class="flex items-center"><input type="radio" name="has_planner" value="Yes" required class="form-radio"> <span class="ml-2">Yes</span></label>
                         <label class="flex items-center"><input type="radio" name="has_planner" value="No" required class="form-radio"> <span class="ml-2">No</span></label>
@@ -457,13 +460,18 @@
                 </div>
 
                 <div>
-                    <label for="wedding-message" class="form-label">Any additional requests/info?</label>
-                    <p class="text-xs text-gray-500">If you need a recommendation for a wedding planner, please let us know here and we'd be happy to connect you.</p>
-                    <textarea id="wedding-message" name="message" rows="4" class="form-input"></textarea>
+                     <div class="flex items-center">
+                        <label for="wedding-message" class="form-label">Any additional requests/info?</label>
+                        <div class="tooltip-container ml-2">
+                           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-circle text-gray-400" viewBox="0 0 16 16"><path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/><path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z"/></svg>
+                           <span class="tooltip-text">If you need a recommendation for a wedding planner, please let us know here and we'd be happy to connect you.</span>
+                        </div>
+                    </div>
+                    <textarea id="wedding-message" name="message" rows="3" class="form-input"></textarea>
                 </div>
 
                 <!-- Turnstile Widget -->
-                <div class="cf-turnstile" data-sitekey="PASTE_YOUR_SITE_KEY_HERE" data-callback="onTurnstileSuccess"></div>
+                <div class="cf-turnstile" data-sitekey="0x4AAAAAAAXCijsYmm_Jz7iJ" data-callback="onTurnstileSuccess"></div>
                 <div class="form-feedback" id="weddingsForm-feedback"></div>
 
                 <!-- Modal Footer -->
@@ -477,27 +485,24 @@
     <!-- Contact Modal -->
     <div id="contactModal" class="modal fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center p-4 z-50 opacity-0 invisible">
         <div class="modal-content bg-white rounded-lg p-8 max-w-md w-full relative transform scale-95">
-            <button onclick="closeModal('contactModal')" class="absolute top-4 right-4 text-gray-600 hover:text-gray-900 text-3xl font-bold">&times;</button>
+            <button onclick="closeModal('contactModal')" class="absolute top-4 right-4 text-gray-600 hover:text-gray-900 text-3xl font-bold" aria-label="Close contact modal">&times;</button>
             <h3 class="text-2xl font-bold mb-6 text-center">General Contact</h3>
             <form id="contactForm" class="space-y-4">
                  <input type="hidden" name="form_type" value="Contact">
                 <div>
                     <label for="contact-name" class="block text-sm font-medium text-gray-700">Name</label>
                     <input type="text" id="contact-name" name="name" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-[#FF8200] focus:border-[#FF8200]">
-                    <p class="error-message" id="contact-name-error">Name is required.</p>
                 </div>
                 <div>
                     <label for="contact-email" class="block text-sm font-medium text-gray-700">Email</label>
                     <input type="email" id="contact-email" name="email" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-[#FF8200] focus:border-[#FF8200]">
-                    <p class="error-message" id="contact-email-error">Please enter a valid email.</p>
                 </div>
                 <div>
                     <label for="contact-message" class="block text-sm font-medium text-gray-700">Message</label>
                     <textarea id="contact-message" name="message" rows="4" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-[#FF8200] focus:border-[#FF8200]"></textarea>
-                    <p class="error-message" id="contact-message-error">Message is required.</p>
                 </div>
                 <!-- Turnstile Widget -->
-                <div class="cf-turnstile" data-sitekey="PASTE_YOUR_SITE_KEY_HERE" data-callback="onTurnstileSuccess"></div>
+                <div class="cf-turnstile" data-sitekey="0x4AAAAAAAXCijsYmm_Jz7iJ" data-callback="onTurnstileSuccess"></div>
                 <div class="form-feedback" id="contactForm-feedback"></div>
                  <!-- Modal Footer -->
                 <div class="flex items-center justify-end pt-4 border-t border-gray-200">

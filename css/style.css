@@ -1,105 +1,192 @@
+/* --- General Styles & Brand Colors --- */
+:root {
+    --vp-navy: #032B44;
+    --vp-orange: #FF8200;
+    --vp-dark-blue: #1E438A;
+    --vp-gray: #C4C4C4;
+}
+
 body {
     font-family: 'Open Sans', sans-serif;
-    background-color: #FFFFFF;
-    color: #032B44;
 }
+
 h1, h2, h3, h4, h5, h6 {
     font-family: 'Montserrat', sans-serif;
-    font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.05em;
 }
-.hero-bg {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?q=80&w=2070&auto=format&fit=crop');
-    background-size: cover;
-    background-position: center;
-}
+
+/* --- Buttons --- */
 .btn-primary {
-    background-color: #FF8200;
-    color: #FFFFFF;
-    transition: all 0.3s ease;
+    background-color: var(--vp-orange);
+    color: white;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 .btn-primary:hover {
-    background-color: #FFFFFF;
-    color: #FF8200;
+    background-color: #d96f00; /* Darker orange */
     transform: translateY(-2px);
-    box-shadow: 0 4px 10px rgba(255, 130, 0, 0.4);
-}
-.btn-primary:disabled {
-    background-color: #fca5a5; /* A lighter orange/red to indicate disabled */
-    cursor: not-allowed;
 }
 .btn-secondary {
-    background-color: transparent;
-    border: 2px solid #FF8200;
-    color: #FF8200;
-    transition: all 0.3s ease;
+    background-color: var(--vp-navy);
+    color: white;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 .btn-secondary:hover {
-    background-color: #FF8200;
-    color: #FFFFFF;
+    background-color: var(--vp-dark-blue);
+    transform: translateY(-2px);
 }
+.btn-secondary-gray {
+    background-color: #6B7280; /* Tailwind gray-500 */
+    color: white;
+    transition: background-color 0.3s ease;
+}
+.btn-secondary-gray:hover {
+    background-color: #4B5563; /* Tailwind gray-600 */
+}
+
+/* --- Header & Navigation --- */
+.nav-link {
+    position: relative;
+    padding-bottom: 4px;
+    transition: color 0.3s ease;
+}
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--vp-orange);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+    transform-origin: left;
+}
+.nav-link:hover {
+    color: var(--vp-orange);
+}
+.nav-link:hover::after {
+    transform: scaleX(1);
+}
+
+/* --- Hero Section --- */
+.hero-bg {
+    background: linear-gradient(rgba(3, 43, 68, 0.7), rgba(3, 43, 68, 0.7)), url('https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?q=80&w=2070&auto=format&fit=crop') no-repeat center center/cover;
+}
+
+/* --- General Sections --- */
 .section-bg {
-    background-color: #f8f9fa;
+    background-color: #f9fafb; /* Tailwind gray-50 */
 }
+
+/* --- Interactive Hover Effects --- */
 .card-hover {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 .card-hover:hover {
     transform: translateY(-8px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
 }
-.portfolio-hover {
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+.portfolio-hover img {
+    transition: transform 0.4s ease;
 }
-.portfolio-hover:hover {
+.portfolio-hover:hover img {
     transform: scale(1.05);
 }
+
+/* --- Modals --- */
 .modal {
-    transition: opacity 0.3s ease, visibility 0.3s ease;
+    transition: opacity 0.3s ease-in-out;
 }
 .modal-content {
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease-in-out;
 }
-.nav-link {
+
+/* --- Wedding Form Specific Styles --- */
+.form-label {
+    @apply block text-sm font-semibold text-gray-700 mb-1;
+}
+.form-input {
+    @apply mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#FF8200] focus:border-[#FF8200];
+}
+.form-checkbox {
+     @apply h-4 w-4 text-[#FF8200] focus:ring-[#d96f00] border-gray-300 rounded;
+}
+.form-radio {
+    @apply h-4 w-4 text-[#FF8200] focus:ring-[#d96f00] border-gray-300;
+}
+
+/* Tooltip Styles */
+.tooltip-container {
     position: relative;
-    transition: color 0.3s;
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
 }
-.nav-link::after {
-    content: '';
+.tooltip-text {
+    visibility: hidden;
+    width: 220px;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 8px;
     position: absolute;
-    width: 0;
-    height: 2px;
-    bottom: -5px;
+    z-index: 10;
+    bottom: 125%; /* Position above the icon */
     left: 50%;
-    transform: translateX(-50%);
-    background-color: #FF8200;
-    transition: width 0.3s;
+    margin-left: -110px; /* Use half of the width to center */
+    opacity: 0;
+    transition: opacity 0.3s;
+    font-family: 'Open Sans', sans-serif; /* Use body font */
+    font-size: 12px;
+    font-weight: normal;
+    text-transform: none; /* Override header styles */
+    letter-spacing: normal;
 }
-.nav-link:hover::after {
-    width: 100%;
+/* Arrow for the tooltip */
+.tooltip-text::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #333 transparent transparent transparent;
 }
-.nav-link:hover {
-    color: #FF8200;
+.tooltip-container:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1;
 }
-.error-message {
-    color: #dc2626; /* red-600 */
-    font-size: 0.875rem; /* text-sm */
-    margin-top: 0.25rem; /* mt-1 */
-    display: none; /* hidden by default */
-}
+
+
+/* --- Form Feedback & Errors --- */
 .form-feedback {
     display: none;
-    padding: 1rem;
-    border-radius: 0.5rem;
-    margin-top: 1rem;
-    text-align: center;
+    padding: 12px;
+    border-radius: 6px;
+    margin-top: 10px;
+    font-weight: 500;
 }
 .form-feedback.success {
-    background-color: #d1fae5; /* green-100 */
-    color: #065f46; /* green-800 */
+    background-color: #dcfce7; /* Green-100 */
+    color: #166534; /* Green-800 */
 }
 .form-feedback.error {
-    background-color: #fee2e2; /* red-100 */
-    color: #991b1b; /* red-800 */
+    background-color: #fee2e2; /* Red-100 */
+    color: #991b1b; /* Red-800 */
 }
+.status-success {
+    color: #16a34a; /* Green-600 */
+    font-weight: bold;
+}
+.status-error {
+    color: #dc2626; /* Red-600 */
+    font-weight: bold;
+}
+.status-info {
+    color: #2563eb; /* Blue-600 */
+}
+
