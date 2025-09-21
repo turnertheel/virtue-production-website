@@ -1,117 +1,128 @@
-// --- Global Turnstile Callback Functions ---
+// --- CONFIGURATION ---
+const workerUrl = 'https://virtue-production-backend.virtueproductionco.workers.dev';
 
-// This function is called by Turnstile when the challenge is successfully completed.
-window.onTurnstileSuccess = function (token) {
-    const activeForm = document.querySelector('.modal:not(.invisible) form');
-    if (activeForm) {
-        // Enable the submit button now that we have a valid token.
-        const submitButton = activeForm.querySelector('button[type="submit"]');
-        if (submitButton) {
-            submitButton.disabled = false;
+// --- Form Validation and Submission ---
+
+function validateForm(form) {
+    let isValid = true;
+    // Clear previous errors
+    form.querySelectorAll('.border-red-500').forEach(el => el.classList.remove('border-red-500'));
+    form.querySelectorAll('.text-red-500').forEach(el => el.classList.remove('text-red-500'));
+
+    const requiredInputs = form.querySelectorAll('[required]');
+    
+    requiredInputs.forEach(input => {
+        let fieldIsValid = true;
+        let fieldContainer = input.closest('div');
+
+        if (input.type === 'radio') {
+            const radioGroup = form.querySelectorAll(`input[name="${input.name}"]`);
+            if (![...radioGroup].some(radio => radio.checked)) { fieldIsValid = false; }
+        } else if (input.type === 'checkbox') {
+            const checkboxGroup = form.querySelectorAll(`input[name="${input.name}"]`);
+             if (input.required && ![...checkboxGroup].some(checkbox => checkbox.checked)) { fieldIsValid = false; }
+        } else if (input.type === 'email') {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(input.value)) { fieldIsValid = false; }
+        } else if (input.value.trim() === '') {
+            fieldIsValid = false;
         }
-        // Also hide any "please wait" messages.
-        const feedback = activeForm.querySelector('.form-feedback');
-        if (feedback && feedback.textContent.includes('Verifying')) {
-             feedback.style.display = 'none';
-        }
-    }
-};
 
-// This function is called if the Turnstile challenge expires.
-window.onTurnstileExpire = function () {
-    const activeForm = document.querySelector('.modal:not(.invisible) form');
-    if (activeForm) {
-        // Disable the submit button again.
-        const submitButton = activeForm.querySelector('button[type="submit"]');
-        if (submitButton) {
-            submitButton.disabled = true;
-        }
-        showFeedback(activeForm.id, 'Verification expired. The page may need to be reloaded.', 'error');
-    }
-}
-
-
-// --- Modal Functionality ---
-
-async function openModal(modalId, contentUrl) {
-    const modal = document.getElementById(modalId);
-    if (!modal) return;
-
-    const contentContainer = document.getElementById(`${modalId}Content`);
-    if (!contentContainer) return;
-
-    // Show modal with a loading state
-    contentContainer.innerHTML = '<p class="text-center p-8">Loading...</p>';
-    modal.classList.remove('invisible', 'opacity-0');
-    modal.querySelector('.modal-content').classList.remove('scale-95');
-
-    try {
-        const response = await fetch(contentUrl);
-        if (!response.ok) throw new Error('Could not load form.');
-        
-        const html = await response.text();
-        contentContainer.innerHTML = html;
-
-        const form = contentContainer.querySelector('form');
-        if (form) {
-            form.addEventListener('submit', (event) => {
-                event.preventDefault();
-                handleFormSubmit(form);
-            });
-             // Show a message while Turnstile loads
-            showFeedback(form.id, 'Verifying you are human, please wait...', 'info');
-        }
-        
-        // Render the Turnstile widget
-        if (window.turnstile) {
-            const turnstileDiv = contentContainer.querySelector('.cf-turnstile');
-            if(turnstileDiv) {
-                const widgetId = turnstile.render(turnstileDiv);
-                turnstileDiv.dataset.widgetId = widgetId;
+        if (!fieldIsValid) {
+            isValid = false;
+            if (input.type === 'radio' || input.type === 'checkbox') {
+                const groupLabel = fieldContainer.querySelector('.form-label');
+                if (groupLabel) { groupLabel.classList.add('text-red-500'); }
+                else { fieldContainer.classList.add('text-red-500'); }
+            } else {
+                input.classList.add('border-red-500');
             }
-        }
-
-    } catch (error) {
-        console.error('Error loading modal content:', error);
-        contentContainer.innerHTML = `<p class="text-center p-8 text-red-600">Error: ${error.message}</p>`;
-    }
-}
-
-
-function closeModal(modalId) {
-    const modal = document.getElementById(modalId);
-    if (modal) {
-        modal.classList.add('opacity-0');
-        const modalContent = modal.querySelector('.modal-content');
-        if (modalContent) {
-            modalContent.classList.add('scale-95');
-        }
-        setTimeout(() => {
-            modal.classList.add('invisible');
-            const contentContainer = document.getElementById(`${modalId}Content`);
-            if (contentContainer) {
-                contentContainer.innerHTML = '';
-            }
-        }, 300);
-    }
-}
-
-// Global listeners for closing modals
-document.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape') {
-        document.querySelectorAll('.modal').forEach(modal => {
-            if (!modal.classList.contains('invisible')) {
-                closeModal(modal.id);
-            }
-        });
-    }
-});
-
-document.querySelectorAll('.modal').forEach(modal => {
-    modal.addEventListener('click', function(event) {
-        if (event.target === this) {
-            closeModal(this.id);
         }
     });
-});
+
+    return isValid;
+}
+
+async function handleFormSubmit(formElement) {
+    if (!validateForm(formElement)) {
+        showFeedback(formElement.id, 'Please fill out all required fields marked with *', 'error');
+        return;
+    }
+
+    // This check is now a fallback, as the primary verification happens in modals.js
+    if (!turnstileToken) {
+        showFeedback(formElement.id, 'Could not verify you are human. Please wait a moment and try again.', 'error');
+        return;
+    }
+
+    const submitButton = formElement.querySelector('button[type="submit"]');
+    
+    submitButton.disabled = true;
+    submitButton.textContent = 'Submitting...';
+    showFeedback(formElement.id, '', 'none');
+
+    const formData = new FormData(formElement);
+    const data = Object.fromEntries(formData.entries());
+
+    // Add the globally stored Turnstile token to our data payload
+    data['cf-turnstile-response'] = turnstileToken;
+
+    // Special handling for checkboxes
+    const checkboxGroups = {};
+    formElement.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+        if (!checkboxGroups[cb.name]) { checkboxGroups[cb.name] = []; }
+        if (cb.checked) { checkboxGroups[cb.name].push(cb.value); }
+    });
+
+    for (const key in checkboxGroups) {
+        data[key] = checkboxGroups[key].length > 0 ? checkboxGroups[key] : [];
+    }
+
+
+    try {
+        if (!workerUrl) throw new Error('Worker URL is not configured.');
+
+        const response = await fetch(workerUrl, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+        });
+
+        const result = await response.json();
+
+        if (!response.ok || !result.success) {
+            throw new Error(result.error || `Server responded with status: ${response.status}`);
+        }
+        
+        showFeedback(formElement.id, 'Thank you! Your message has been sent.', 'success');
+        
+        if (window.turnstile) {
+            const widget = formElement.querySelector('.cf-turnstile');
+            if (widget && widget.dataset.widgetId) {
+                turnstile.reset(widget.dataset.widgetId);
+            }
+        }
+        setTimeout(() => closeModal(formElement.closest('.modal').id), 3000);
+
+    } catch (error) {
+        console.error('Submission error:', error);
+        showFeedback(formElement.id, `An error occurred: ${error.message}`, 'error');
+    } finally {
+        submitButton.disabled = false;
+        if(formElement.id === 'weddingsForm'){
+            submitButton.textContent = 'Submit Application';
+        } else {
+            submitButton.textContent = 'Submit Inquiry';
+        }
+    }
+}
+
+function showFeedback(formId, message, type) {
+    const feedbackElement = document.getElementById(`${formId}-feedback`);
+    if (feedbackElement) {
+        feedbackElement.textContent = message;
+        feedbackElement.className = `form-feedback ${type}`;
+        feedbackElement.style.display = message ? 'block' : 'none';
+    }
+}
 
