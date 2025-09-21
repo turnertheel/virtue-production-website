@@ -317,7 +317,7 @@
     <!-- Rentals Modal -->
     <div id="rentalsModal" class="modal fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center p-4 z-50 opacity-0 invisible">
         <div class="modal-content bg-white rounded-lg p-8 max-w-md w-full relative transform scale-95">
-            <button onclick="closeModal('rentalsModal')" class="absolute top-4 right-4 text-gray-600 hover:text-gray-900">&times;</button>
+            <button onclick="closeModal('rentalsModal')" class="absolute top-4 right-4 text-gray-600 hover:text-gray-900 text-3xl font-bold">&times;</button>
             <h3 class="text-2xl font-bold mb-6 text-center">Audio Rental Inquiries</h3>
             <form id="rentalsForm" class="space-y-4">
                 <input type="hidden" name="form_type" value="Rentals">
@@ -336,48 +336,140 @@
                     <textarea id="rental-message" name="message" rows="4" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-[#FF8200] focus:border-[#FF8200]"></textarea>
                      <p class="error-message" id="rental-message-error">Message is required.</p>
                 </div>
-                <!-- Add the Turnstile widget div here -->
-                <div class="cf-turnstile" data-sitekey="0x4AAAAAAB2T7c-Q7jmWAa8F"></div>
+                 <!-- Turnstile Widget -->
+                <div class="cf-turnstile" data-sitekey="PASTE_YOUR_SITE_KEY_HERE" data-callback="onTurnstileSuccess"></div>
                 <div class="form-feedback" id="rentalsForm-feedback"></div>
                 <!-- Modal Footer -->
-                <div class="flex items-center justify-end p-6 border-t border-gray-200 rounded-b">
-                    <button onclick="closeModal('rentalsModal')" type="button" class="text-white bg-gray-600 hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-3">Close</button>
-                    <a href="https://calendly.com/virtueproductionco/30min" target="_blank" class="text-white bg-orange-500 hover:bg-orange-600 focus:ring-4 focus:outline-none focus:ring-orange-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-3 uppercase">Book a Consultation</a>
-                    <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center uppercase">Submit Inquiry</button>
+                <div class="flex items-center justify-end pt-4 border-t border-gray-200">
+                    <button onclick="closeModal('rentalsModal')" type="button" class="px-5 py-2.5 rounded-lg btn-secondary-gray mr-3">Close</button>
+                    <a href="https://calendly.com/virtueproductionco/30min" target="_blank" class="px-5 py-2.5 rounded-lg btn-secondary mr-3 uppercase">Book a Consultation</a>
+                    <button type="submit" class="px-5 py-2.5 rounded-lg btn-primary uppercase">Submit Inquiry</button>
                 </div>
             </form>
         </div>
     </div>
     <!-- Weddings Modal -->
     <div id="weddingsModal" class="modal fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center p-4 z-50 opacity-0 invisible">
-        <div class="modal-content bg-white rounded-lg p-8 max-w-md w-full relative transform scale-95">
-            <button onclick="closeModal('weddingsModal')" class="absolute top-4 right-4 text-gray-600 hover:text-gray-900">&times;</button>
-            <h3 class="text-2xl font-bold mb-6 text-center">Wedding & Corporate Inquiries</h3>
-            <form id="weddingsForm" class="space-y-4">
-                 <input type="hidden" name="form_type" value="Weddings/Corporate">
-                <div>
-                    <label for="wedding-name" class="block text-sm font-medium text-gray-700">Name</label>
-                    <input type="text" id="wedding-name" name="name" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-[#FF8200] focus:border-[#FF8200]">
-                    <p class="error-message" id="wedding-name-error">Name is required.</p>
+        <div class="modal-content bg-white rounded-lg p-8 max-w-2xl w-full relative transform scale-95 max-h-[90vh] overflow-y-auto">
+            <button onclick="closeModal('weddingsModal')" class="absolute top-4 right-4 text-gray-600 hover:text-gray-900 text-3xl font-bold">&times;</button>
+            <div class="text-center mb-6">
+                 <h2 class="text-3xl font-bold text-[#032B44]">Wedding Sound Application</h2>
+                 <p class="text-gray-600 mt-2">We are so excited for you and your partner! This form helps us get all the details we need to provide a quote. Please be as detailed as possible.</p>
+            </div>
+            <form id="weddingsForm" class="space-y-6">
+                <input type="hidden" name="form_type" value="Wedding Sound Application">
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label for="wedding-partner1-name" class="form-label">First and Last Name of Bride/Groom/Partner #1 *</label>
+                        <input type="text" id="wedding-partner1-name" name="partner1_name" required class="form-input">
+                    </div>
+                    <div>
+                        <label for="wedding-partner2-name" class="form-label">First and Last Name of Bride/Groom/Partner #2 *</label>
+                        <input type="text" id="wedding-partner2-name" name="partner2_name" required class="form-input">
+                    </div>
                 </div>
-                <div>
-                    <label for="wedding-email" class="block text-sm font-medium text-gray-700">Email</label>
-                    <input type="email" id="wedding-email" name="email" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-[#FF8200] focus:border-[#FF8200]">
-                    <p class="error-message" id="wedding-email-error">Please enter a valid email.</p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label for="wedding-email" class="form-label">Email *</label>
+                        <input type="email" id="wedding-email" name="email" required class="form-input">
+                    </div>
+                    <div>
+                        <label for="wedding-phone" class="form-label">Phone Number *</label>
+                        <input type="tel" id="wedding-phone" name="phone" required class="form-input">
+                    </div>
                 </div>
+
                 <div>
-                    <label for="wedding-message" class="block text-sm font-medium text-gray-700">Tell us about your event</label>
-                    <textarea id="wedding-message" name="message" rows="4" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-[#FF8200] focus:border-[#FF8200]"></textarea>
-                    <p class="error-message" id="wedding-message-error">Message is required.</p>
+                    <label for="wedding-date" class="form-label">When is your wedding? *</label>
+                    <input type="date" id="wedding-date" name="wedding_date" required class="form-input">
                 </div>
-                 <!-- Add the Turnstile widget div here -->
-                <div class="cf-turnstile" data-sitekey="0x4AAAAAAB2T7c-Q7jmWAa8F"></div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label for="wedding-ceremony-time" class="form-label">What time is your ceremony? *</label>
+                        <input type="text" id="wedding-ceremony-time" name="ceremony_time" required class="form-input">
+                    </div>
+                    <div>
+                        <label for="wedding-reception-time" class="form-label">What time is your reception? *</label>
+                        <input type="text" id="wedding-reception-time" name="reception_time" required class="form-input">
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label for="wedding-ceremony-location" class="form-label">Where is the ceremony located? *</label>
+                        <input type="text" id="wedding-ceremony-location" name="ceremony_location" required class="form-input">
+                    </div>
+                    <div>
+                        <label for="wedding-reception-location" class="form-label">Where is the reception located? *</label>
+                        <input type="text" id="wedding-reception-location" name="reception_location" placeholder="If same as ceremony, type 'Same'" required class="form-input">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="form-label">Do you need sound for both the ceremony and reception? *</label>
+                    <div class="flex items-center space-x-4 mt-2">
+                        <label class="flex items-center"><input type="checkbox" name="sound_needs" value="Ceremony" class="form-checkbox"> <span class="ml-2">Ceremony</span></label>
+                        <label class="flex items-center"><input type="checkbox" name="sound_needs" value="Reception" class="form-checkbox"> <span class="ml-2">Reception</span></label>
+                        <label class="flex items-center"><input type="checkbox" name="sound_needs" value="Cocktail Hour" class="form-checkbox"> <span class="ml-2">Cocktail Hour</span></label>
+                    </div>
+                </div>
+                 <div>
+                    <label class="form-label">Do you need sound for the rehearsal?</label>
+                    <div class="flex items-center space-x-4 mt-2">
+                        <label class="flex items-center"><input type="radio" name="rehearsal_sound" value="Yes" class="form-radio"> <span class="ml-2">Yes</span></label>
+                        <label class="flex items-center"><input type="radio" name="rehearsal_sound" value="No" class="form-radio"> <span class="ml-2">No</span></label>
+                    </div>
+                </div>
+                
+                <div>
+                    <label class="form-label">Do you have a day of wedding schedule? *</label>
+                     <p class="text-xs text-gray-500">If yes, please email the schedule to us at 'Your Email'. Wedding schedule is required.</p>
+                    <div class="flex items-center space-x-4 mt-2">
+                        <label class="flex items-center"><input type="radio" name="has_schedule" value="Yes" required class="form-radio"> <span class="ml-2">Yes</span></label>
+                        <label class="flex items-center"><input type="radio" name="has_schedule" value="No" required class="form-radio"> <span class="ml-2">No</span></label>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="form-label">Which of the following describes the music at your wedding? *</label>
+                    <div class="flex flex-col space-y-2 mt-2">
+                        <label class="flex items-center"><input type="radio" name="music_style" value="DJ" required class="form-radio"> <span class="ml-2">DJ (we provide sound support for your DJ, we do not provide DJ services)</span></label>
+                        <label class="flex items-center"><input type="radio" name="music_style" value="Live Band/Musicians" required class="form-radio"> <span class="ml-2">Live Band/Musicians</span></label>
+                         <label class="flex items-center"><input type="radio" name="music_style" value="Other" required class="form-radio"> <span class="ml-2">Other</span></label>
+                    </div>
+                </div>
+                
+                <div>
+                    <label class="form-label">Do you have a designated planner? *</label>
+                    <p class="text-xs text-gray-500">A wedding planner is required for all events unless explicitly approved by Virtue Production Management. If you need a recommendation, please let us know in the additional requests/info section.</p>
+                    <div class="flex items-center space-x-4 mt-2">
+                        <label class="flex items-center"><input type="radio" name="has_planner" value="Yes" required class="form-radio"> <span class="ml-2">Yes</span></label>
+                        <label class="flex items-center"><input type="radio" name="has_planner" value="No" required class="form-radio"> <span class="ml-2">No</span></label>
+                    </div>
+                </div>
+
+                <div>
+                    <label for="wedding-best-time-to-call" class="form-label">When can we reach out to you for a phone call? *</label>
+                    <input type="text" id="wedding-best-time-to-call" name="best_time_to_call" required class="form-input">
+                </div>
+
+                <div>
+                    <label for="wedding-message" class="form-label">Any additional requests/info?</label>
+                    <p class="text-xs text-gray-500">If you need a recommendation for a wedding planner, please let us know here and we'd be happy to connect you.</p>
+                    <textarea id="wedding-message" name="message" rows="4" class="form-input"></textarea>
+                </div>
+
+                <!-- Turnstile Widget -->
+                <div class="cf-turnstile" data-sitekey="PASTE_YOUR_SITE_KEY_HERE" data-callback="onTurnstileSuccess"></div>
                 <div class="form-feedback" id="weddingsForm-feedback"></div>
+
                 <!-- Modal Footer -->
-                <div class="flex items-center justify-end p-6 border-t border-gray-200 rounded-b">
-                    <button onclick="closeModal('weddingsModal')" type="button" class="text-white bg-gray-600 hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-3">Close</button>
-                    <a href="https://calendly.com/virtueproductionco/30min" target="_blank" class="text-white bg-orange-500 hover:bg-orange-600 focus:ring-4 focus:outline-none focus:ring-orange-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-3 uppercase">Book a Consultation</a>
-                    <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center uppercase">Submit Inquiry</button>
+                <div class="flex items-center justify-end pt-6 border-t border-gray-200">
+                    <button onclick="closeModal('weddingsModal')" type="button" class="px-5 py-2.5 rounded-lg btn-secondary-gray mr-3">Close</button>
+                    <button type="submit" class="px-5 py-2.5 rounded-lg btn-primary uppercase">Submit Application</button>
                 </div>
             </form>
         </div>
@@ -385,7 +477,7 @@
     <!-- Contact Modal -->
     <div id="contactModal" class="modal fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center p-4 z-50 opacity-0 invisible">
         <div class="modal-content bg-white rounded-lg p-8 max-w-md w-full relative transform scale-95">
-            <button onclick="closeModal('contactModal')" class="absolute top-4 right-4 text-gray-600 hover:text-gray-900">&times;</button>
+            <button onclick="closeModal('contactModal')" class="absolute top-4 right-4 text-gray-600 hover:text-gray-900 text-3xl font-bold">&times;</button>
             <h3 class="text-2xl font-bold mb-6 text-center">General Contact</h3>
             <form id="contactForm" class="space-y-4">
                  <input type="hidden" name="form_type" value="Contact">
@@ -404,21 +496,21 @@
                     <textarea id="contact-message" name="message" rows="4" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-[#FF8200] focus:border-[#FF8200]"></textarea>
                     <p class="error-message" id="contact-message-error">Message is required.</p>
                 </div>
-                 <!-- Add the Turnstile widget div here -->
-                <div class="cf-turnstile" data-sitekey="0x4AAAAAAB2T7c-Q7jmWAa8F"></div>
+                <!-- Turnstile Widget -->
+                <div class="cf-turnstile" data-sitekey="PASTE_YOUR_SITE_KEY_HERE" data-callback="onTurnstileSuccess"></div>
                 <div class="form-feedback" id="contactForm-feedback"></div>
                  <!-- Modal Footer -->
-                <div class="flex items-center justify-end p-6 border-t border-gray-200 rounded-b">
-                     <button onclick="closeModal('contactModal')" type="button" class="text-white bg-gray-600 hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-3">Close</button>
-                    <a href="https://calendly.com/virtueproductionco/30min" target="_blank" class="text-white bg-orange-500 hover:bg-orange-600 focus:ring-4 focus:outline-none focus:ring-orange-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-3 uppercase">Book a Consultation</a>
-                     <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center uppercase">Submit Inquiry</button>
+                <div class="flex items-center justify-end pt-4 border-t border-gray-200">
+                     <button onclick="closeModal('contactModal')" type="button" class="px-5 py-2.5 rounded-lg btn-secondary-gray mr-3">Close</button>
+                    <a href="https://calendly.com/virtueproductionco/30min" target="_blank" class="px-5 py-2.5 rounded-lg btn-secondary mr-3 uppercase">Book a Consultation</a>
+                     <button type="submit" class="px-5 py-2.5 rounded-lg btn-primary uppercase">Submit Inquiry</button>
                 </div>
             </form>
         </div>
     </div>
 
     <script src="js/script.js"></script>
-
 </body>
+
 </html>
 

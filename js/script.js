@@ -1,78 +1,122 @@
 // --- CONFIGURATION ---
 const workerUrl = 'https://virtue-production-backend.virtueproductionco.workers.dev';
 
-// Mobile menu toggle
-const mobileMenuButton = document.getElementById('mobile-menu-button');
-const mobileMenu = document.getElementById('mobile-menu');
-mobileMenuButton.addEventListener('click', () => {
-    mobileMenu.classList.toggle('hidden');
-});
+document.addEventListener('DOMContentLoaded', () => {
 
-// Close mobile menu when a link is clicked
-document.querySelectorAll('#mobile-menu a').forEach(link => {
-    link.addEventListener('click', () => {
-        mobileMenu.classList.add('hidden');
-    });
-});
-
-// Smooth scrolling for anchor links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        document.querySelector(this.getAttribute('href')).scrollIntoView({
-            behavior: 'smooth'
+    // Mobile menu toggle
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    if (mobileMenuButton && mobileMenu) {
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
         });
-    });
-});
+    }
 
-// FAQ Accordion
-const accordionItems = document.querySelectorAll('#faq-accordion button');
-accordionItems.forEach(item => {
-    item.addEventListener('click', () => {
-        const content = item.nextElementSibling;
-        const icon = item.querySelector('svg');
-        
-        accordionItems.forEach(otherItem => {
-            if (otherItem !== item) {
-                otherItem.nextElementSibling.classList.add('hidden');
-                otherItem.querySelector('svg').classList.remove('rotate-180');
+    // Close mobile menu when a link is clicked
+    document.querySelectorAll('#mobile-menu a').forEach(link => {
+        link.addEventListener('click', () => {
+            if (mobileMenu) {
+                mobileMenu.classList.add('hidden');
             }
         });
+    });
 
-        content.classList.toggle('hidden');
-        icon.classList.toggle('rotate-180');
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const targetElement = document.querySelector(this.getAttribute('href'));
+            if (targetElement) {
+                targetElement.scrollIntoView({
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+
+    // FAQ Accordion
+    const accordionItems = document.querySelectorAll('#faq-accordion button');
+    accordionItems.forEach(item => {
+        item.addEventListener('click', () => {
+            const content = item.nextElementSibling;
+            const icon = item.querySelector('svg');
+            
+            const isVisible = !content.classList.contains('hidden');
+
+            // Close all other items
+            accordionItems.forEach(otherItem => {
+                if (otherItem !== item) {
+                    otherItem.nextElementSibling.classList.add('hidden');
+                    otherItem.querySelector('svg').classList.remove('rotate-180');
+                }
+            });
+
+            // Toggle the clicked item
+            if (!isVisible) {
+                content.classList.remove('hidden');
+                icon.classList.add('rotate-180');
+            } else {
+                 content.classList.add('hidden');
+                 icon.classList.remove('rotate-180');
+            }
+        });
+    });
+
+    // --- Form Setup ---
+    const formsToSetup = [
+        'rentalsForm',
+        'weddingsForm',
+        'contactForm'
+    ];
+
+    formsToSetup.forEach(formId => {
+        const form = document.getElementById(formId);
+        if (form) {
+            form.addEventListener('submit', function(event) {
+                event.preventDefault();
+                handleFormSubmit(form);
+            });
+        }
     });
 });
 
-// Modal functionality
+
+// --- Modal Functionality ---
 function openModal(modalId) {
     const modal = document.getElementById(modalId);
-    modal.classList.remove('invisible', 'opacity-0');
-    modal.querySelector('.modal-content').classList.remove('scale-95');
+    if (modal) {
+        modal.classList.remove('invisible', 'opacity-0');
+        const modalContent = modal.querySelector('.modal-content');
+        if (modalContent) {
+            modalContent.classList.remove('scale-95');
+        }
+    }
 }
 
 function closeModal(modalId) {
     const modal = document.getElementById(modalId);
-    modal.classList.add('opacity-0');
-    modal.querySelector('.modal-content').classList.add('scale-95');
-    setTimeout(() => {
-        modal.classList.add('invisible');
-        const feedback = modal.querySelector('.form-feedback');
-        if (feedback) {
-            feedback.style.display = 'none';
+    if (modal) {
+        modal.classList.add('opacity-0');
+        const modalContent = modal.querySelector('.modal-content');
+        if (modalContent) {
+            modalContent.classList.add('scale-95');
         }
-        // Reset turnstile widget on close
-        const turnstileWidget = modal.querySelector('.cf-turnstile');
-        if(turnstileWidget && typeof turnstile !== 'undefined') {
-            try {
-                turnstile.reset(turnstileWidget);
-            } catch (e) {
-                console.error("Error resetting Turnstile widget:", e);
+        setTimeout(() => {
+            modal.classList.add('invisible');
+            // Reset form state on close
+            const form = modal.querySelector('form');
+            if (form) {
+                form.reset();
+                const feedback = form.querySelector('.form-feedback');
+                if(feedback) feedback.style.display = 'none';
+                // Remove all error states
+                form.querySelectorAll('.border-red-500').forEach(el => el.classList.remove('border-red-500'));
             }
-        }
-    }, 300);
+        }, 300);
+    }
 }
 
+// Global listeners for closing modals
 document.addEventListener('keydown', (event) => {
     if (event.key === 'Escape') {
         document.querySelectorAll('.modal').forEach(modal => {
@@ -83,7 +127,7 @@ document.addEventListener('keydown', (event) => {
     }
 });
 
- document.querySelectorAll('.modal').forEach(modal => {
+document.querySelectorAll('.modal').forEach(modal => {
     modal.addEventListener('click', function(event) {
         if (event.target === this) {
             closeModal(this.id);
@@ -91,123 +135,126 @@ document.addEventListener('keydown', (event) => {
     });
 });
 
-// Form Setup
-const forms = [
-    { id: 'contactForm', nameField: 'contact-name', emailField: 'contact-email', messageField: 'contact-message' },
-    { id: 'rentalsForm', nameField: 'rental-name', emailField: 'rental-email', messageField: 'rental-message' },
-    { id: 'weddingsForm', nameField: 'wedding-name', emailField: 'wedding-email', messageField: 'wedding-message' }
-];
 
-forms.forEach(formInfo => {
-    const form = document.getElementById(formInfo.id);
-    if(form) {
-        form.addEventListener('submit', function(event) {
-            event.preventDefault();
-            if (validateForm(formInfo)) {
-                handleFormSubmit(form);
-            }
-        });
-    }
-});
+// --- Form Validation and Submission ---
 
-function validateForm(formInfo) {
+function validateForm(form) {
     let isValid = true;
-    const nameInput = document.getElementById(formInfo.nameField);
-    const emailInput = document.getElementById(formInfo.emailField);
-    const messageInput = document.getElementById(formInfo.messageField);
+    // Hide all previous error messages
+    form.querySelectorAll('.form-input, .form-radio, .form-checkbox').forEach(input => {
+        input.classList.remove('border-red-500');
+    });
 
-    const nameError = document.getElementById(`${formInfo.nameField}-error`);
-    const emailError = document.getElementById(`${formInfo.emailField}-error`);
-    const messageError = document.getElementById(`${formInfo.messageField}-error`);
-    
-    nameError.style.display = 'none';
-    emailError.style.display = 'none';
-    messageError.style.display = 'none';
-    nameInput.classList.remove('border-red-500');
-    emailInput.classList.remove('border-red-500');
-    messageInput.classList.remove('border-red-500');
+    const requiredInputs = form.querySelectorAll('[required]');
+    requiredInputs.forEach(input => {
+        let fieldIsValid = true;
+        if (input.type === 'radio') {
+            const radioGroup = form.querySelectorAll(`input[name="${input.name}"]`);
+            if (![...radioGroup].some(radio => radio.checked)) {
+                fieldIsValid = false;
+            }
+        } else if (input.type === 'checkbox') {
+             const checkboxGroup = form.querySelectorAll(`input[name="${input.name}"]`);
+            if (![...checkboxGroup].some(checkbox => checkbox.checked)) {
+                fieldIsValid = false;
+            }
+        } else if (input.type === 'email') {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(input.value)) {
+                fieldIsValid = false;
+            }
+        } else if (input.value.trim() === '') {
+            fieldIsValid = false;
+        }
 
-    if (!nameInput || nameInput.value.trim() === '') {
-        nameError.style.display = 'block';
-        nameInput.classList.add('border-red-500');
-        isValid = false;
-    }
-
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailInput || !emailRegex.test(emailInput.value)) {
-        emailError.style.display = 'block';
-        emailInput.classList.add('border-red-500');
-        isValid = false;
-    }
-
-    if (!messageInput || messageInput.value.trim() === '') {
-        messageError.style.display = 'block';
-        messageInput.classList.add('border-red-500');
-        isValid = false;
-    }
+        if (!fieldIsValid) {
+            isValid = false;
+            input.classList.add('border-red-500');
+            // Find the parent container to highlight the whole group for radios/checkboxes
+            const fieldContainer = input.closest('div');
+            if(fieldContainer) {
+                 fieldContainer.querySelectorAll('label').forEach(label => label.classList.add('text-red-500'));
+            }
+        } else {
+             const fieldContainer = input.closest('div');
+             if(fieldContainer) {
+                 fieldContainer.querySelectorAll('label').forEach(label => label.classList.remove('text-red-500'));
+             }
+        }
+    });
 
     return isValid;
 }
 
+
 async function handleFormSubmit(formElement) {
+    if (!validateForm(formElement)) {
+        showFeedback(formElement.id, 'Please fill out all required fields marked with *', 'error');
+        return;
+    }
+
     const submitButton = formElement.querySelector('button[type="submit"]');
-    const feedbackElement = document.getElementById(`${formElement.id}-feedback`);
     
     submitButton.disabled = true;
     submitButton.textContent = 'Submitting...';
-    if(feedbackElement) feedbackElement.style.display = 'none';
+    showFeedback(formElement.id, '', 'none'); // Clear previous feedback
 
     const formData = new FormData(formElement);
     const data = Object.fromEntries(formData.entries());
-    
-    // Get the Turnstile token from the form data
-    const turnstileToken = formData.get('cf-turnstile-response');
-    if (!turnstileToken) {
-        showFeedback(feedbackElement, 'Could not verify you are human. Please refresh and try again.', 'error');
-        submitButton.disabled = false;
-        submitButton.textContent = 'Submit Inquiry';
-        return;
+
+    // Handle checkboxes, which FormData doesn't handle well for multiple values
+    const checkboxGroups = {};
+    formElement.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+        if (!checkboxGroups[cb.name]) {
+            checkboxGroups[cb.name] = [];
+        }
+        if (cb.checked) {
+            checkboxGroups[cb.name].push(cb.value);
+        }
+    });
+    // Add checkbox groups to the data payload
+    for(const key in checkboxGroups) {
+        data[key] = checkboxGroups[key];
     }
-    // No need to add it to the data object manually, FormData already includes it.
+
 
     try {
-        if (!workerUrl) {
-            throw new Error('Worker URL is not configured.');
-        }
+        if (!workerUrl) throw new Error('Worker URL is not configured.');
 
         const response = await fetch(workerUrl, {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
+            headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(data)
         });
 
         const result = await response.json();
 
         if (!response.ok || !result.success) {
-            // Use the detailed error from the worker if available
             throw new Error(result.error || `Server responded with status: ${response.status}`);
         }
         
-        showFeedback(feedbackElement, 'Thank you! Your message has been sent.', 'success');
-        formElement.reset();
+        showFeedback(formElement.id, 'Thank you! Your message has been sent.', 'success');
         setTimeout(() => closeModal(formElement.closest('.modal').id), 3000);
 
     } catch (error) {
         console.error('Submission error:', error);
-        showFeedback(feedbackElement, `An error occurred: ${error.message}. Please try again.`, 'error');
+        showFeedback(formElement.id, `An error occurred: ${error.message}`, 'error');
     } finally {
         submitButton.disabled = false;
-        submitButton.textContent = 'Submit Inquiry';
+        if(formElement.id === 'weddingsForm'){
+            submitButton.textContent = 'Submit Application';
+        } else {
+            submitButton.textContent = 'Submit Inquiry';
+        }
     }
 }
 
-function showFeedback(element, message, type) {
-    if (element) {
-        element.textContent = message;
-        element.className = `form-feedback ${type}`;
-        element.style.display = 'block';
+function showFeedback(formId, message, type) {
+    const feedbackElement = document.getElementById(`${formId}-feedback`);
+    if (feedbackElement) {
+        feedbackElement.textContent = message;
+        feedbackElement.className = `form-feedback ${type}`; // Applies success/error styles
+        feedbackElement.style.display = message ? 'block' : 'none';
     }
 }
 
