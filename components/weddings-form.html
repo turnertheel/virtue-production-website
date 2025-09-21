@@ -1,0 +1,97 @@
+<div class="p-8">
+    <button onclick="closeModal('weddingsModal')" class="absolute top-4 right-4 text-gray-600 hover:text-gray-900 text-3xl font-bold" aria-label="Close wedding application modal">&times;</button>
+    <div class="text-center mb-8">
+         <h2 class="text-3xl font-bold text-[#032B44]">Wedding Sound Application</h2>
+         <p class="text-gray-600 mt-2">We are so excited for you and your partner! This form helps us get all the details we need to provide a quote. Please be as detailed as possible.</p>
+    </div>
+    <form id="weddingsForm" class="space-y-6">
+        <input type="hidden" name="form_type" value="Wedding Sound Application">
+        <div>
+            <label for="wedding-partner1-name" class="form-label">First and Last Name of Bride/Groom/Partner #1 *</label>
+            <input type="text" id="wedding-partner1-name" name="partner1_name" required class="form-input">
+        </div>
+        <div>
+            <label for="wedding-partner2-name" class="form-label">First and Last Name of Bride/Groom/Partner #2 *</label>
+            <input type="text" id="wedding-partner2-name" name="partner2_name" required class="form-input">
+        </div>
+        <div>
+            <label for="wedding-email" class="form-label">Email *</label>
+            <input type="email" id="wedding-email" name="email" required class="form-input">
+        </div>
+        <div>
+            <label for="wedding-phone" class="form-label">Phone Number *</label>
+            <input type="tel" id="wedding-phone" name="phone" required class="form-input">
+        </div>
+        <div>
+            <label for="wedding-date" class="form-label">When is your wedding? * <span class="text-sm font-normal text-gray-500">mm/dd/yyyy</span></label>
+            <input type="date" id="wedding-date" name="wedding_date" required class="form-input">
+        </div>
+        <div>
+            <label for="wedding-ceremony-time" class="form-label">What time is your ceremony? *</label>
+            <input type="text" id="wedding-ceremony-time" name="ceremony_time" required class="form-input">
+        </div>
+        <div>
+            <label for="wedding-reception-time" class="form-label">What time is your reception? *</label>
+            <input type="text" id="wedding-reception-time" name="reception_time" required class="form-input">
+        </div>
+        <div>
+            <label for="wedding-ceremony-location" class="form-label">Where is the ceremony located? *</label>
+            <input type="text" id="wedding-ceremony-location" name="ceremony_location" required class="form-input">
+        </div>
+        <div>
+            <label for="wedding-reception-location" class="form-label">Where is the reception located? *</label>
+            <input type="text" id="wedding-reception-location" placeholder="If same as ceremony, type 'Same'" required class="form-input">
+        </div>
+        <div>
+            <label class="form-label">Do you need sound for both the ceremony and reception? *</label>
+            <div class="flex flex-col sm:flex-row sm:items-center sm:space-x-4 mt-2 space-y-2 sm:space-y-0">
+                <label class="flex items-center"><input type="checkbox" name="sound_needs" value="Ceremony" class="form-checkbox"> <span class="ml-2">Ceremony</span></label>
+                <label class="flex items-center"><input type="checkbox" name="sound_needs" value="Reception" class="form-checkbox"> <span class="ml-2">Reception</span></label>
+                <label class="flex items-center"><input type="checkbox" name="sound_needs" value="Cocktail Hour" class="form-checkbox"> <span class="ml-2">Cocktail Hour</span></label>
+            </div>
+        </div>
+         <div>
+            <label class="form-label">Do you need sound for the rehearsal?</label>
+            <div class="flex items-center space-x-4 mt-2">
+                <label class="flex items-center"><input type="radio" name="rehearsal_sound" value="Yes" class="form-radio"> <span class="ml-2">Yes</span></label>
+                <label class="flex items-center"><input type="radio" name="rehearsal_sound" value="No" class="form-radio" checked> <span class="ml-2">No</span></label>
+            </div>
+        </div>
+        <div>
+            <div class="flex items-center"><label class="form-label">Do you have a day of wedding schedule? *</label><div class="tooltip-container ml-2"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-circle text-gray-400" viewBox="0 0 16 16"><path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/><path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z"/></svg><span class="tooltip-text">If yes, please email the schedule to us at 'Your Email'. Wedding schedule is required.</span></div></div>
+            <div class="flex items-center space-x-4 mt-2">
+                <label class="flex items-center"><input type="radio" name="has_schedule" value="Yes" required class="form-radio"> <span class="ml-2">Yes</span></label>
+                <label class="flex items-center"><input type="radio" name="has_schedule" value="No" required class="form-radio"> <span class="ml-2">No</span></label>
+            </div>
+        </div>
+        <div>
+             <div class="flex items-center"><label class="form-label">Which of the following describes the music at your wedding? *</label><div class="tooltip-container ml-2"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-circle text-gray-400" viewBox="0 0 16 16"><path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/><path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z"/></svg><span class="tooltip-text">We provide sound support for your DJ, we do not provide DJ services.</span></div></div>
+            <div class="flex flex-col space-y-2 mt-2">
+                <label class="flex items-center"><input type="radio" name="music_style" value="DJ" required class="form-radio"> <span class="ml-2">DJ</span></label>
+                <label class="flex items-center"><input type="radio" name="music_style" value="Live Band/Musicians" required class="form-radio"> <span class="ml-2">Live Band/Musicians</span></label>
+                 <label class="flex items-center"><input type="radio" name="music_style" value="Other" required class="form-radio"> <span class="ml-2">Other</span></label>
+            </div>
+        </div>
+        <div>
+             <div class="flex items-center"><label class="form-label">Do you have a designated planner? *</label><div class="tooltip-container ml-2"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-circle text-gray-400" viewBox="0 0 16 16"><path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/><path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z"/></svg><span class="tooltip-text">A wedding planner is required for all events unless explicitly approved by Virtue Production Management. If you need a recommendation, please let us know in the additional requests/info section.</span></div></div>
+            <div class="flex items-center space-x-4 mt-2">
+                <label class="flex items-center"><input type="radio" name="has_planner" value="Yes" required class="form-radio"> <span class="ml-2">Yes</span></label>
+                <label class="flex items-center"><input type="radio" name="has_planner" value="No" required class="form-radio"> <span class="ml-2">No</span></label>
+            </div>
+        </div>
+        <div>
+            <label for="wedding-best-time-to-call" class="form-label">When can we reach out to you for a phone call? *</label>
+            <input type="text" id="wedding-best-time-to-call" name="best_time_to_call" required class="form-input">
+        </div>
+        <div>
+             <div class="flex items-center"><label for="wedding-message" class="form-label">Any additional requests/info?</label><div class="tooltip-container ml-2"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-circle text-gray-400" viewBox="0 0 16 16"><path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/><path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z"/></svg><span class="tooltip-text">If you need a recommendation for a wedding planner, please let us know here and we'd be happy to connect you.</span></div></div>
+            <textarea id="wedding-message" name="message" rows="3" class="form-input"></textarea>
+        </div>
+        <div class="cf-turnstile" data-sitekey="0x4AAAAAAAXCijsYmm_Jz7iJ"></div>
+        <div class="form-feedback" id="weddingsForm-feedback"></div>
+        <div class="flex items-center justify-end pt-6 border-t border-gray-200">
+            <button onclick="closeModal('weddingsModal')" type="button" class="px-5 py-2.5 rounded-lg btn-secondary-gray mr-3">Close</button>
+            <button type="submit" class="px-5 py-2.5 rounded-lg btn-primary uppercase">Submit Application</button>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,26 @@
+<div class="p-8">
+    <button onclick="closeModal('contactModal')" class="absolute top-4 right-4 text-gray-600 hover:text-gray-900 text-3xl font-bold" aria-label="Close contact modal">&times;</button>
+    <h3 class="text-2xl font-bold mb-6 text-center">General Contact</h3>
+    <form id="contactForm" class="space-y-4">
+         <input type="hidden" name="form_type" value="Contact">
+        <div>
+            <label for="contact-name" class="block text-sm font-medium text-gray-700">Name *</label>
+            <input type="text" id="contact-name" name="name" required class="form-input">
+        </div>
+        <div>
+            <label for="contact-email" class="block text-sm font-medium text-gray-700">Email *</label>
+            <input type="email" id="contact-email" name="email" required class="form-input">
+        </div>
+        <div>
+            <label for="contact-message" class="block text-sm font-medium text-gray-700">Message *</label>
+            <textarea id="contact-message" name="message" rows="4" required class="form-input"></textarea>
+        </div>
+        <div class="cf-turnstile" data-sitekey="0x4AAAAAAAXCijsYmm_Jz7iJ"></div>
+        <div class="form-feedback" id="contactForm-feedback"></div>
+         <div class="flex items-center justify-end pt-4 border-t border-gray-200">
+             <button onclick="closeModal('contactModal')" type="button" class="px-5 py-2.5 rounded-lg btn-secondary-gray mr-3">Close</button>
+            <a href="https://calendly.com/virtueproductionco/30min" target="_blank" class="px-5 py-2.5 rounded-lg btn-secondary mr-3 uppercase">Book a Consultation</a>
+             <button type="submit" class="px-5 py-2.5 rounded-lg btn-primary uppercase">Submit Inquiry</button>
+        </div>
+    </form>
+</div>
