@@ -111,6 +111,7 @@ function closeModal(modalId) {
                 if(feedback) feedback.style.display = 'none';
                 // Remove all error states
                 form.querySelectorAll('.border-red-500').forEach(el => el.classList.remove('border-red-500'));
+                form.querySelectorAll('.text-red-500').forEach(el => el.classList.remove('text-red-500'));
             }
         }, 300);
     }
@@ -140,21 +141,23 @@ document.querySelectorAll('.modal').forEach(modal => {
 
 function validateForm(form) {
     let isValid = true;
-    // Hide all previous error messages
-    form.querySelectorAll('.form-input, .form-radio, .form-checkbox').forEach(input => {
-        input.classList.remove('border-red-500');
-    });
+    // Clear previous errors
+    form.querySelectorAll('.border-red-500').forEach(el => el.classList.remove('border-red-500'));
+    form.querySelectorAll('.text-red-500').forEach(el => el.classList.remove('text-red-500'));
 
     const requiredInputs = form.querySelectorAll('[required]');
+    
     requiredInputs.forEach(input => {
         let fieldIsValid = true;
+        let fieldContainer = input.closest('div');
+
         if (input.type === 'radio') {
             const radioGroup = form.querySelectorAll(`input[name="${input.name}"]`);
             if (![...radioGroup].some(radio => radio.checked)) {
                 fieldIsValid = false;
             }
         } else if (input.type === 'checkbox') {
-             const checkboxGroup = form.querySelectorAll(`input[name="${input.name}"]`);
+            const checkboxGroup = form.querySelectorAll(`input[name="${input.name}"]`);
             if (![...checkboxGroup].some(checkbox => checkbox.checked)) {
                 fieldIsValid = false;
             }
@@ -169,17 +172,15 @@ function validateForm(form) {
 
         if (!fieldIsValid) {
             isValid = false;
-            input.classList.add('border-red-500');
-            // Find the parent container to highlight the whole group for radios/checkboxes
-            const fieldContainer = input.closest('div');
-            if(fieldContainer) {
-                 fieldContainer.querySelectorAll('label').forEach(label => label.classList.add('text-red-500'));
+            if (input.type === 'radio' || input.type === 'checkbox') {
+                 // For radio/checkbox groups, find the main label to color red
+                const groupLabel = fieldContainer.querySelector('.form-label');
+                if (groupLabel) {
+                    groupLabel.classList.add('text-red-500');
+                }
+            } else {
+                input.classList.add('border-red-500');
             }
-        } else {
-             const fieldContainer = input.closest('div');
-             if(fieldContainer) {
-                 fieldContainer.querySelectorAll('label').forEach(label => label.classList.remove('text-red-500'));
-             }
         }
     });
 
@@ -202,7 +203,7 @@ async function handleFormSubmit(formElement) {
     const formData = new FormData(formElement);
     const data = Object.fromEntries(formData.entries());
 
-    // Handle checkboxes, which FormData doesn't handle well for multiple values
+    // Special handling for checkboxes to ensure they are sent as an array
     const checkboxGroups = {};
     formElement.querySelectorAll('input[type="checkbox"]').forEach(cb => {
         if (!checkboxGroups[cb.name]) {
@@ -212,9 +213,15 @@ async function handleFormSubmit(formElement) {
             checkboxGroups[cb.name].push(cb.value);
         }
     });
-    // Add checkbox groups to the data payload
-    for(const key in checkboxGroups) {
-        data[key] = checkboxGroups[key];
+
+    for (const key in checkboxGroups) {
+        if (checkboxGroups[key].length > 0) {
+            data[key] = checkboxGroups[key];
+        } else {
+             // If a checkbox group is required but none are checked, validation should have already caught it.
+             // If not required and none checked, we can remove it to avoid sending an empty array.
+             delete data[key];
+        }
     }
 
 
@@ -234,6 +241,13 @@ async function handleFormSubmit(formElement) {
         }
         
         showFeedback(formElement.id, 'Thank you! Your message has been sent.', 'success');
+        // Reset turnstile widget after successful submission
+        if (window.turnstile) {
+            const widget = formElement.querySelector('.cf-turnstile');
+            if (widget) {
+                turnstile.reset(widget);
+            }
+        }
         setTimeout(() => closeModal(formElement.closest('.modal').id), 3000);
 
     } catch (error) {
@@ -253,7 +267,7 @@ function showFeedback(formId, message, type) {
     const feedbackElement = document.getElementById(`${formId}-feedback`);
     if (feedbackElement) {
         feedbackElement.textContent = message;
-        feedbackElement.className = `form-feedback ${type}`; // Applies success/error styles
+        feedbackElement.className = `form-feedback ${type}`;
         feedbackElement.style.display = message ? 'block' : 'none';
     }
 }
